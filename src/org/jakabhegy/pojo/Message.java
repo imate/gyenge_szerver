@@ -1,20 +1,36 @@
 package org.jakabhegy.pojo;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Message {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Message{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	private String name;
 	private String text;
 	private Date date;
 
-	public Message(String name, String text, Date date) {
+	
+	
+	public Message() {
+		super();
+	}
+
+	/*public Message(String name, String text, Date date) {
 		super();
 		this.name = name;
 		this.text = text;
 		this.date = date;
-	}
+	}*/
 
 	public String getName() {
 		return name;
@@ -38,6 +54,14 @@ public class Message {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override
