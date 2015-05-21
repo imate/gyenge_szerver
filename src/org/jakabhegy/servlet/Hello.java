@@ -29,7 +29,7 @@ public class Hello extends HttpServlet {
 		out.println("</header>");
 		out.println("<article>");
 		out.println("<h2>"
-				+ Tools.linkTag("Message.jsp", "Küldj egy üzenetet!") + "</h2>");
+				+ Tools.linkTag("Message.jsp", "Küldj egy óriási üzenetet!") + "</h2>");
 		out.println("<h2>a te ip-címed: " + request.getRemoteAddr() + "</h2>");
 		out.println(Tools.imgTag("img/prima.jpg")
 				+ Tools.imgTag("img/tama.jpg"));

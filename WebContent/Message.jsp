@@ -1,3 +1,6 @@
+
+<%@page import="javax.persistence.Persistence"%>
+<%@page import="org.jakabhegy.dao.MessageDao"%>
 <%@page import="javax.persistence.EntityManager"%>
 <%@page import="javax.persistence.EntityManagerFactory"%>
 <%@page import="java.util.List"%>
@@ -18,16 +21,44 @@
 <meta charset="UTF-8">
 </head>
 <body>
+
+		
+	<% 
+		EntityManagerFactory factory= Persistence.createEntityManagerFactory("messages");
+		EntityManager em= factory.createEntityManager();		
+		MessageDao dao = new MessageDao(em);
+		List<Message> messages2 = dao.listAll("Message");
+		%><ul><% 
+		for (Message message : messages2) {
+			
+			%> <li><article>
+			<h3><% out.println("Név: "+message.getName());%></h3>
+			<h3><% out.println("Üzenet: "+message.getText());%></h3>
+			<h4><% out.println(message.getDate());%></h4>
+			</article></li>
+		
+			
+	
+		<% }%>
+		</ul>
+
+		
 		
 	<header>
 		<h1>Küldj nekem egy nagy üzenetet!</h1>
 	</header>
 	<div class="form_cucc">
+		
 		<form action="MessageServlet" method="post" name="messageForm" accept-charset="UTF-8">
+		
 			<input type="text" name="name" placeholder="Név" />
 			<textarea name="message" placeholder="Üzenet"></textarea>
 			<input type="submit" value="Küldés" />
+			
 		</form>
+		<% 
+		out.println("<h2>"
+				+ Tools.linkTag("Hello", "Vissza") + "</h2>");%>
 	</div>
 </body>
 </html>
