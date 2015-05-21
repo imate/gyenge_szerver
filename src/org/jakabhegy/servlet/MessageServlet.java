@@ -1,11 +1,16 @@
 package org.jakabhegy.servlet;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.jakabhegy.pojo.Message;
 
 /**
  * Servlet implementation class MessageServlet
@@ -38,8 +43,11 @@ public class MessageServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
-		String message = request.getParameter("message");
-		System.out.println(name + ": " + message);
+		String text = request.getParameter("message");
+		Date actDate=Calendar.getInstance().getTime();
+		Message message=new Message(name, text, actDate);
+		System.out.println(message);
+		response.sendRedirect(response.encodeRedirectURL("Hello"));
 	}
 
 }

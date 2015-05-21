@@ -1,11 +1,7 @@
 package org.jakabhegy.tools;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Tools {
-	
+
 	public static String beforeBody(String title, String css) {
 		return "<html>\n<head>\n<title>" + title
 				+ "</title>\n<link rel=\"stylesheet\" href=\"" + css
@@ -17,6 +13,15 @@ public class Tools {
 	}
 
 	public static String imgTag(String source) {
-		return "<img src=\""+source+"\"></img>";
+		return "<img src=\"" + source + "\"></img>";
+	}
+
+	public static String linkTag(String url, String text) {
+		return "<a href=\"" + url + "\">" + text + "</a>";
+	}
+
+	public static String audioTag(String source, String type) {
+		return "<audio autoplay loop>\n<source src=\"" + source
+				+ "\" type=\"" + type + "\">\n</audio>";
 	}
 }

@@ -2,17 +2,20 @@
 <%@page import="org.jakabhegy.tools.Tools"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Egy kis üzenet</title>
-<link rel="stylesheet" href="hello.css" type="text/css"></link>
+<link rel="stylesheet" href="style.css" type="text/css"></link>
+<meta charset="UTF-8">
 </head>
 <body>
-	<form action="MessageServlet" method="post" name="messageForm">
-		Név: <input type="text" name="name" />
-		<p></p>
-		Üzenet: <input type="text" name="message" />
-		<p></p>
-		<input type="submit" value="Küldés" />
-	</form>
+	<header>
+		<h1>Küldj nekem egy nagy üzenetet!</h1>
+	</header>
+	<div class="form_cucc">
+		<form action="MessageServlet" method="post" name="messageForm" accept-charset="UTF-8">
+			<input type="text" name="name" placeholder="Név" />
+			<textarea name="message" placeholder="Üzenet"></textarea>
+			<input type="submit" value="Küldés" />
+		</form>
+	</div>
 </body>
 </html>
