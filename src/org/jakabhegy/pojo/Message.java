@@ -51,6 +51,11 @@ public class Message{
 	public Date getDate() {
 		return date;
 	}
+	
+	public String getFormattedDate(){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		return dateFormat.format(date);
+	}
 
 	public void setDate(Date date) {
 		this.date = date;

@@ -27,7 +27,7 @@ public class Hello extends HttpServlet {
 		out.println("<header>");
 		out.println("<h1>Üdvözöllek a jakabhegyi gyenge szerveren!</h1>");
 		out.println("</header>");
-		out.println("<article>");
+		out.println("<article class=\"hello_article\">");
 		out.println("<h2>"
 				+ Tools.linkTag("Message.jsp", "Küldj egy óriási üzenetet!") + "</h2>");
 		out.println("<h2>a te ip-címed: " + request.getRemoteAddr() + "</h2>");

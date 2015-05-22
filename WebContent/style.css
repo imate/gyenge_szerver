@@ -13,33 +13,48 @@ body {
 header {
 	background-color: rgb(196, 0, 0);
 	padding: 1;
-	margin: 20;
+	margin: 40px;
 	text-align: center; -
 	-width: 66%;
 	border-style: solid;
 	border-width: 3px;
+	border-radius: 10px;
 }
 
-article {
-	background-color: rgb(161, 124, 127);
+.hello_article {
+	background-color: rgb(196, 0, 0);
 	padding: 10;
-	margin: 10;
-	text-align: center;
-	padding-bottom;
-	line-height=20px;
-	width: 40%;
-	
+	margin: 40px 80px;
+	text-align: center; padding-bottom;
+	line-height =20px;
 	border-style: solid;
-	border-width: 5px;
+	border-width: 3px;
+	border-radius: 10px;
+}
+
+.hello_article img {
+	margin: 20;
+	border: 3px solid #000000;
+	height: 40%;
+	width: auto;
+	opacity: 0.5;
+	transition: all .5s;
+}
+
+.hello_article img:hover {
+	box-shadow: 0 0 20px #000000;
+	opacity: 1.0;
+	transition: all .5s;
 }
 
 .form_cucc {
 	max-width: 400px;
-	margin: 20px auto;
+	margin: 10px 40px;
 	padding: 16px;
 	background: rgb(196, 0, 0);
 	border-style: solid;
 	border-width: 3px;
+	border-radius: 10px;
 }
 
 .form_cucc input[type="text"], .form_cucc textarea, .form_cucc select {
@@ -76,17 +91,36 @@ article {
 	background: #b9b9b9;
 }
 
-img {
-	margin: 20;
-	border: 3px solid #000000;
-	height: 60%;
-	width: auto;
-	opacity: 0.5;
-	transition: all .5s;
+ul {
+	list-style-type: none;
 }
 
-article img:hover {
-	box-shadow: 0 0 20px #000000;
-	opacity: 1.0;
-	transition: all .5s;
+li article {
+	max-width: 600px;
+	margin: 0 0 10px 0;
+	border-style: solid;
+	border-width: 3px;
+	border-radius: 10px;
+	background-color: gray;
+	text-align: left;
+}
+
+li article h1 {
+	margin: 0px auto;
+	padding: 10px;
+	color: #fff;
+	border-style: solid;
+	border-width: 0 0 3px 0;
+	border-color: black;
+	border-radius: 10px 10px 0 0;
+	background-color: rgb(196, 0, 0);
+}
+
+li article h2 {
+	padding: 0 10px;
+}
+
+li article h3 {
+	font-size: 80%;
+	padding: 0 0 0 10px;
 }
