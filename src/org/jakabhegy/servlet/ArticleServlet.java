@@ -13,10 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTML;
 
 import org.jakabhegy.dao.ArticleDao;
 import org.jakabhegy.dao.MessageDao;
+import org.jakabhegy.pojo.Account;
 import org.jakabhegy.pojo.Article;
 import org.jakabhegy.pojo.Message;
 import org.jakabhegy.tools.Tools;
@@ -27,48 +29,52 @@ import org.jakabhegy.tools.Tools;
 @WebServlet("/ArticleServlet")
 public class ArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	private static final String PERSISTENCE_UNIT_NAME = "messages"; //$NON-NLS-1$
 	private static EntityManagerFactory factory;
 	private EntityManager em;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ArticleServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ArticleServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Account user = (Account) session.getAttribute("user");
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
 		ArticleDao dao = new ArticleDao(em);
-		List<Article> articles = dao.listAll("Article");
-		
-		String title =   Tools.stripHtmlRegex(request.getParameter("title")) ;
-		String creator = Tools.stripHtmlRegex(request.getParameter("creator"));
+
+		String title = Tools.stripHtmlRegex(request.getParameter("title"));
 		String text = Tools.stripHtmlRegex(request.getParameter("text"));
 		Date actDate = Calendar.getInstance().getTime();
 		Article article = new Article();
-		article.setCreator(creator);
+		article.setAuthor(user);
 		article.setDate(actDate);
 		article.setText(text);
 		article.setTitle(title);
 		dao.create(article);
 
 		response.sendRedirect(response.encodeRedirectURL("ShowArticles.jsp"));
-		
-		
+
 	}
 
 }

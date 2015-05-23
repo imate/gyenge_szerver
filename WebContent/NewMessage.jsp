@@ -5,7 +5,8 @@
 <%@page import="javax.persistence.EntityManagerFactory"%>
 <%@page import="java.util.List"%>
 <%@page import="javax.persistence.Query"%>
-<%@page import="org.eclipse.persistence.internal.libraries.asm.tree.TryCatchBlockNode"%>
+<%@page
+	import="org.eclipse.persistence.internal.libraries.asm.tree.TryCatchBlockNode"%>
 <%@page import="org.jakabhegy.pojo.Message"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -28,35 +29,50 @@
 
 		<form action="MessageServlet" method="post" name="messageForm"
 			accept-charset="UTF-8">
-			
-			<input type="text" name="name" placeholder="Név" />
+
 			<textarea name="message" placeholder="Üzenet"></textarea>
 			<input type="submit" value="Küldés" />
-<%
-			out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>");
-		%>
+			<%
+				out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>");
+			%>
 		</form>
-		
+
 	</div>
-	
-	<% 
-		EntityManagerFactory factory= Persistence.createEntityManagerFactory("messages");
-		EntityManager em= factory.createEntityManager();		
+
+	<%
+		EntityManagerFactory factory = Persistence
+				.createEntityManagerFactory("messages");
+		EntityManager em = factory.createEntityManager();
 		MessageDao dao = new MessageDao(em);
 		List<Message> messageList = dao.listAll("Message");
-		%><ul><% 
-		int i=1;
-		for (Message message : messageList) {
-			
-			%> <li><article>
-			<h1><% out.println("#"+(i++)+" "+message.getName());%></h1>
-			<h2><% out.println(message.getText());%></h2>
-			<h3><% out.println(message.getFormattedDate());%></h3>
+	%><ul>
+		<%
+			int i = 1;
+			for (Message message : messageList) {
+		%>
+		<li><article>
+			<h1>
+				<%
+					out.println("#" + (i++) + " " + message.getAuthorName());
+				%>
+			</h1>
+			<h2>
+				<%
+					out.println(message.getText());
+				%>
+			</h2>
+			<h3>
+				<%
+					out.println(message.getFormattedDate());
+				%>
+			</h3>
 			</article></li>
-		
-			
-	
-		<% }%>
-		</ul>
+
+
+
+		<%
+			}
+		%>
+	</ul>
 </body>
 </html>

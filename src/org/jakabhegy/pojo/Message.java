@@ -11,27 +11,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Message{
+public class Message {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int articleId;
-	private String name;
+	private Account author;
 	private String text;
 	private Date date;
 
-	
-	
 	public Message() {
 		super();
 	}
 
-	public String getName() {
-		return name;
+	public Account getAuthor() {
+		return author;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getAuthorName() {
+		return getAuthor().getUsername();
+	}
+
+	public void setAuthor(Account author) {
+		this.author = author;
 	}
 
 	public String getText() {
@@ -45,8 +47,8 @@ public class Message{
 	public Date getDate() {
 		return date;
 	}
-	
-	public String getFormattedDate(){
+
+	public String getFormattedDate() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		return dateFormat.format(date);
 	}
@@ -74,7 +76,7 @@ public class Message{
 	@Override
 	public String toString() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		return name + ":\n" + text + "\n" + dateFormat.format(date);
+		return getAuthorName() + ":\n" + text + "\n" + dateFormat.format(date);
 	}
 
 }

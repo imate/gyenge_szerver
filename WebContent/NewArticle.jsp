@@ -22,7 +22,6 @@
 
 		<form action="ArticleServlet" method="post" name="messageForm"
 			accept-charset="UTF-8">
-			<input type="text" name="creator" placeholder="Név" value="<%= session.getAttribute("username") %>" />
 			<input type="text" name="title" placeholder="Cím" />
 			<textarea name="text" placeholder="Szöveg"></textarea>
 			<input type="submit" value="Küldés" />

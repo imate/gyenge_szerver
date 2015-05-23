@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jakabhegy.pojo.Account;
 import org.jakabhegy.tools.Tools;
 
 @WebServlet("/Hello")
@@ -23,10 +24,10 @@ public class Hello extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String username = null;
-		boolean loggedIn = session.getAttribute("username") != null;
+		Account user = null;
+		boolean loggedIn = session.getAttribute("user") != null;
 		if (loggedIn)
-			username = session.getAttribute("username").toString();
+			user = (Account) session.getAttribute("user");
 
 		PrintWriter out = response.getWriter();
 		out.println(Tools.beforeBody("Gyenge Szerver", "style.css"));
@@ -40,7 +41,8 @@ public class Hello extends HttpServlet {
 		// out.println("<h2>"+ Tools.linkTag("Message.jsp",
 		// "Küldj egy óriási üzenetet!") + "</h2>");
 		if (loggedIn) {
-			out.println("<h2>" + username + " néven vagy bejelentkezve!</h2>");
+			out.println("<h2>" + user.getUsername()
+					+ " néven vagy bejelentkezve!</h2>");
 			out.println("<h2>"
 					+ Tools.linkTag("NewArticle.jsp",
 							"Írj nekem egy nagy cikket!") + "</h2>");
@@ -48,6 +50,8 @@ public class Hello extends HttpServlet {
 					+ Tools.linkTag("LogoutServlet", "Kijelentkezés") + "</h2>");
 		} else {
 			out.println("<h2>" + Tools.linkTag("Login.jsp", "Jelentkezz be!")
+					+ "</h2>");
+			out.println("<h2>" + Tools.linkTag("Reg.jsp", "Vagy regisztrálj!")
 					+ "</h2>");
 		}
 		out.println("<h1>" + Tools.linkTag("ShowArticles.jsp", "Cikkek")
