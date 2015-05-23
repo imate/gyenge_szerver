@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.jakabhegy.dao.ArticleDao;
 import org.jakabhegy.dao.MessageDao;
@@ -40,6 +41,12 @@ public class ShowArticle extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String username = null;
+		boolean loggedIn = session.getAttribute("username") != null;
+		if (loggedIn)
+			username = session.getAttribute("username").toString();
+		
 		PrintWriter out = response.getWriter();
 		int id = Integer.parseInt(request.getParameter("id"));
 		out.println(Tools.beforeBody("Gyenge Szerver", "style.css"));
@@ -51,14 +58,14 @@ public class ShowArticle extends HttpServlet {
 		EntityManager em = factory.createEntityManager();
 		ArticleDao daoArticle = new ArticleDao(em);
 		Article article = daoArticle.listOne(id);
-		out.println("<div class=\"form_cucc\">");
-		out.println("<h1>" + article.getTitle() + "</h1>");
+		out.println("<article class=\"item\">");
+		out.println("<h1>" + article.getCreator()+": "+article.getTitle() + "</h1>");
 		out.println("<h2>" + article.getText() + "</h2>");
-		out.println("<h3>" + article.getCreator() + "</h3>");
-		out.println("<h4>" + article.getDate() + "</h4>");
+		out.println("<h3>" + article.getDate() + "</h3>");
 		out.println("<h2>" + Tools.linkTag("ShowArticles.jsp", "Vissza")
 				+ "</h2>");
-		out.println("</div>");
+		out.println("</article>");
+		
 		out.println("<div class=\"form_cucc\">");
 		out.println("<h2>Hozzászólások:</h2>");
 		out.println("</div>");
@@ -69,7 +76,7 @@ public class ShowArticle extends HttpServlet {
 		int i = 1;
 		for (Message message : messageList) {
 			if (message.getArticleId() == id) {
-				out.println("<li><article>");
+				out.println("<li><article class=\"item\">");
 				out.println("<h1> #" + (i++) + " " + message.getName()+ "</h1>");
 				out.println("<h2>" + message.getText() + "</h2>");
 				out.println("<h3>" + message.getFormattedDate() + "</h3>");
@@ -78,17 +85,22 @@ public class ShowArticle extends HttpServlet {
 
 		}
 		out.println("</ul>");
+		if(loggedIn){
+			out.println("<div class=\"form_cucc\">");
 		
-		out.println("<div class=\"form_cucc\">");
-		
-		out.println("<form action=\"MessageServlet\" method=\"post\" name=\"messageForm\"accept-charset=\"UTF-8\">");		
-		out.println("<input type=\"text\" name=\"name\" placeholder=\"Név\" />");		
-		out.println("<textarea name=\"message\" placeholder=\"Üzenet\"></textarea>");		
-		out.println("<input type =\"hidden\"name=\"articleId\" value="+id+">");		
-		out.println("<input type=\"submit\" value=\"Küldés\" />");
+			out.println("<form action=\"MessageServlet\" method=\"post\" name=\"messageForm\"accept-charset=\"UTF-8\">");		
+			out.println("<input type=\"text\" name=\"name\" placeholder=\"Név\" value=\""+username+"\" />");		
+			out.println("<textarea name=\"message\" placeholder=\"Üzenet\"></textarea>");		
+			out.println("<input type =\"hidden\"name=\"articleId\" value="+id+">");		
+			out.println("<input type=\"submit\" value=\"Küldés\" />");
 					
-		out.println("</form>");		
-		out.println("</div>");
+			out.println("</form>");		
+			out.println("</div>");
+		}else{
+			out.println("<div class=\"form_cucc\"><h2>A hozzászóláshoz be kell jelentkezned!</h2>");
+			out.println("<h2>" + Tools.linkTag("Login.jsp", "Bejelentkezés")
+					+ "</h2></div>");
+		}
 		
 		
 		out.println(Tools.afterBody());

@@ -29,10 +29,10 @@
 		int i=1;
 		for (Article article : articleList) {
 			
-			%> <li><article>
+			%> <li><div class="form_cucc">
 			<h1><% out.println("#"+(i++)+" "+Tools.linkTag("ShowArticle?id="+article.getId(), article.getTitle()));%></h1>
 					
-			</article></li>
+			</div></li>
 		
 			
 	

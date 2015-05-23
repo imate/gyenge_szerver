@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.jakabhegy.tools.Tools;
 
@@ -21,6 +22,12 @@ public class Hello extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String username = null;
+		boolean loggedIn = session.getAttribute("username") != null;
+		if (loggedIn)
+			username = session.getAttribute("username").toString();
+
 		PrintWriter out = response.getWriter();
 		out.println(Tools.beforeBody("Gyenge Szerver", "style.css"));
 
@@ -29,12 +36,22 @@ public class Hello extends HttpServlet {
 		out.println("</header>");
 		out.println("<article class=\"hello_article\">");
 		out.println("<nav>");
-		
 
-	
-		//out.println("<h2>"+ Tools.linkTag("Message.jsp", "Küldj egy óriási üzenetet!") + "</h2>");
-		out.println("<h2>"+ Tools.linkTag("NewArticle.jsp", "Írj nekem egy nagy cikket!") + "</h2>");
-		out.println("<h1>"+ Tools.linkTag("ShowArticles.jsp", "Cikkek") + "</h1>");
+		// out.println("<h2>"+ Tools.linkTag("Message.jsp",
+		// "Küldj egy óriási üzenetet!") + "</h2>");
+		if (loggedIn) {
+			out.println("<h2>" + username + " néven vagy bejelentkezve!</h2>");
+			out.println("<h2>"
+					+ Tools.linkTag("NewArticle.jsp",
+							"Írj nekem egy nagy cikket!") + "</h2>");
+			out.println("<h2>"
+					+ Tools.linkTag("LogoutServlet", "Kijelentkezés") + "</h2>");
+		} else {
+			out.println("<h2>" + Tools.linkTag("Login.jsp", "Jelentkezz be!")
+					+ "</h2>");
+		}
+		out.println("<h1>" + Tools.linkTag("ShowArticles.jsp", "Cikkek")
+				+ "</h1>");
 		out.println("</nav>");
 		out.println("<h2>a te ip-címed: " + request.getRemoteAddr() + "</h2>");
 		out.println(Tools.imgTag("img/prima.jpg")

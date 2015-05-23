@@ -21,31 +21,8 @@ header {
 	border-radius: 10px;
 }
 
-.hello_article {
-	background-color: rgb(196, 0, 0);
-	padding: 10;
-	margin: 40px 80px;
-	text-align: center; padding-bottom;
-	line-height =20px;
-	border-style: solid;
-	border-width: 3px;
-	border-radius: 10px;
-}
 
-.hello_article img {
-	margin: 20;
-	border: 3px solid #000000;
-	height: 40%;
-	width: auto;
-	opacity: 0.5;
-	transition: all .5s;
-}
 
-.hello_article img:hover {
-	box-shadow: 0 0 20px #000000;
-	opacity: 1.0;
-	transition: all .5s;
-}
 
 .form_cucc {
 	max-width: 400px;
@@ -57,7 +34,8 @@ header {
 	border-radius: 10px;
 }
 
-.form_cucc input[type="text"], .form_cucc textarea, .form_cucc select {
+.form_cucc input[type="text"], .form_cucc input[type="password"],
+	.form_cucc textarea, .form_cucc select {
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-ms-transition: all 0.30s ease-in-out;
@@ -95,17 +73,23 @@ ul {
 	list-style-type: none;
 }
 
-li article {
-	max-width: 600px;
-	margin: 0 0 10px 0;
+article {
+	background-color: rgb(196, 0, 0);
 	border-style: solid;
 	border-width: 3px;
 	border-radius: 10px;
+	paddig: 10px;
+	margin: 10px;
+}
+
+.item {
+	max-width: 600px;
+	margin: 0 0 10px 0;
 	background-color: gray;
 	text-align: left;
 }
 
-li article h1 {
+.item h1 {
 	margin: 0px auto;
 	padding: 10px;
 	color: #fff;
@@ -116,11 +100,50 @@ li article h1 {
 	background-color: rgb(196, 0, 0);
 }
 
-li article h2 {
+.item h2 {
 	padding: 0 10px;
 }
 
-li article h3 {
+.item h3 {
 	font-size: 80%;
 	padding: 0 0 0 10px;
+}
+
+.error_article {
+	width: 400px;
+	text-align: center;
+	border-style: solid;
+	border-width: 3px;
+	border-radius: 10px;
+	margin-left: auto ;
+  margin-right: auto ;
+}
+
+.error_article img {
+	height: 300px;
+	width: auto;
+}
+
+.hello_article {
+	padding: 10;
+	margin: 40px 80px;
+	text-align: center; padding-bottom; line-height =20px;
+	border-style: solid;
+	border-width: 3px;
+	border-radius: 10px;
+}
+
+.hello_article img {
+	margin: 20;
+	border: 3px solid #000000;
+	height: 40%;
+	width: auto;
+	opacity: 0.5;
+	transition: all .5s;
+}
+
+.hello_article img:hover {
+	box-shadow: 0 0 20px #000000;
+	opacity: 1.0;
+	transition: all .5s;
 }
