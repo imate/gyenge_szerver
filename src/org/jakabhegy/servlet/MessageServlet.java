@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jakabhegy.dao.MessageDao;
 import org.jakabhegy.pojo.Message;
+import org.jakabhegy.tools.Tools;
 
 /**
  * Servlet implementation class MessageServlet
@@ -65,8 +66,8 @@ public class MessageServlet extends HttpServlet {
 		
 	
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
-		String name = request.getParameter("name");
-		String text = request.getParameter("message");
+		String name = Tools.stripHtmlRegex(request.getParameter("name"));
+		String text = Tools.stripHtmlRegex(request.getParameter("message"));
 		Date actDate = Calendar.getInstance().getTime();
 		Message message = new Message();
 		message.setName(name);

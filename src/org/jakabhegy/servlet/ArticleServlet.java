@@ -13,11 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.html.HTML;
 
 import org.jakabhegy.dao.ArticleDao;
 import org.jakabhegy.dao.MessageDao;
 import org.jakabhegy.pojo.Article;
 import org.jakabhegy.pojo.Message;
+import org.jakabhegy.tools.Tools;
 
 /**
  * Servlet implementation class ArticleServlet
@@ -53,9 +55,9 @@ public class ArticleServlet extends HttpServlet {
 		ArticleDao dao = new ArticleDao(em);
 		List<Article> articles = dao.listAll("Article");
 		
-		String title = request.getParameter("title");
-		String creator = request.getParameter("creator");
-		String text = request.getParameter("text");
+		String title =   Tools.stripHtmlRegex(request.getParameter("title")) ;
+		String creator = Tools.stripHtmlRegex(request.getParameter("creator"));
+		String text = Tools.stripHtmlRegex(request.getParameter("text"));
 		Date actDate = Calendar.getInstance().getTime();
 		Article article = new Article();
 		article.setCreator(creator);
