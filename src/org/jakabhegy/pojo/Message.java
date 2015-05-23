@@ -15,6 +15,7 @@ public class Message{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	private int articleId;
 	private String name;
 	private String text;
 	private Date date;
@@ -24,13 +25,6 @@ public class Message{
 	public Message() {
 		super();
 	}
-
-	/*public Message(String name, String text, Date date) {
-		super();
-		this.name = name;
-		this.text = text;
-		this.date = date;
-	}*/
 
 	public String getName() {
 		return name;
@@ -67,6 +61,14 @@ public class Message{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getArticleId() {
+		return articleId;
+	}
+
+	public void setArticleId(int articleId) {
+		this.articleId = articleId;
 	}
 
 	@Override

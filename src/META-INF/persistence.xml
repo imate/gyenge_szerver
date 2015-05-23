@@ -3,10 +3,11 @@
 	
 		<persistence-unit name="messages" transaction-type="RESOURCE_LOCAL">
 		<class>org.jakabhegy.pojo.Message</class>
+		<class>org.jakabhegy.pojo.Article</class>
 			<properties>
 					
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby:messageDb;create=true" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:nagyonDb;create=true" />
 			<property name="javax.persistence.jdbc.user" value="test" />
 			<property name="javax.persistence.jdbc.password" value="test" />
 

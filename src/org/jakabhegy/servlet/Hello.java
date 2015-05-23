@@ -28,8 +28,14 @@ public class Hello extends HttpServlet {
 		out.println("<h1>Üdvözöllek a jakabhegyi gyenge szerveren!</h1>");
 		out.println("</header>");
 		out.println("<article class=\"hello_article\">");
-		out.println("<h2>"
-				+ Tools.linkTag("Message.jsp", "Küldj egy óriási üzenetet!") + "</h2>");
+		out.println("<nav>");
+		
+
+	
+		//out.println("<h2>"+ Tools.linkTag("Message.jsp", "Küldj egy óriási üzenetet!") + "</h2>");
+		out.println("<h2>"+ Tools.linkTag("NewArticle.jsp", "Írj nekem egy nagy cikket!") + "</h2>");
+		out.println("<h1>"+ Tools.linkTag("ShowArticles.jsp", "Cikkek") + "</h1>");
+		out.println("</nav>");
 		out.println("<h2>a te ip-címed: " + request.getRemoteAddr() + "</h2>");
 		out.println(Tools.imgTag("img/prima.jpg")
 				+ Tools.imgTag("img/tama.jpg"));

@@ -60,14 +60,11 @@ public class MessageServlet extends HttpServlet {
 		MessageDao dao = new MessageDao(em);
 		List<Message> messages = dao.listAll("Message");
 		
-		//	System.out.println("elsõ");
-		//	for (Message message : messages) {
-		//		dao.delete(message);
-		//	}
+	
 			// request.getSession().setAttribute("students", students);
 		
 	
-
+		int articleId = Integer.parseInt(request.getParameter("articleId"));
 		String name = request.getParameter("name");
 		String text = request.getParameter("message");
 		Date actDate = Calendar.getInstance().getTime();
@@ -75,10 +72,11 @@ public class MessageServlet extends HttpServlet {
 		message.setName(name);
 		message.setDate(actDate);
 		message.setText(text);
-	//	System.out.println(message);
+		message.setArticleId(articleId);
+	
 		dao.create(message);
 
-		response.sendRedirect(response.encodeRedirectURL("Message.jsp"));
+		response.sendRedirect(response.encodeRedirectURL("ShowArticle?id="+articleId));
 	}
 
 }
