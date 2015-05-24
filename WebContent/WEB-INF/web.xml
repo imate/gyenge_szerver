@@ -9,11 +9,10 @@
 
   <servlet-mapping>
     <servlet-name>Hello</servlet-name>
-    <url-pattern>index.html</url-pattern>
+    <url-pattern></url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
-    <welcome-file>Hello</welcome-file>
-   
+    <welcome-file>Hello</welcome-file>  
   </welcome-file-list>
 </web-app>
