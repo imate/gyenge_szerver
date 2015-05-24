@@ -26,7 +26,7 @@ public class Tools {
 	}
 
 	public static String audioTag(String source, String type) {
-		return "<audio controls autoplay loop>\n<source src=\"" + source
+		return "<audio controls loop>\n<source src=\"" + source
 				+ "\" type=\"" + type + "\">\n</audio>";
 	}
 }

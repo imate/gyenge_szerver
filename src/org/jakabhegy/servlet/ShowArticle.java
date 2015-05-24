@@ -49,24 +49,32 @@ public class ShowArticle extends HttpServlet {
 			user = (Account) session.getAttribute("user");
 		
 		PrintWriter out = response.getWriter();
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id=0;
 		out.println(Tools.beforeBody("Gyenge Szerver", "style.css"));
 		out.println("<header>");
 		out.println("<h1>Jakabhegyi gyenge szerver!</h1>");
 		out.println("</header>");
-		EntityManagerFactory factory = Persistence
-				.createEntityManagerFactory("messages");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("messages");
 		EntityManager em = factory.createEntityManager();
 		ArticleDao daoArticle = new ArticleDao(em);
-		Article article = daoArticle.listOne(id);
-		out.println("<article class=\"item\">");
-		out.println("<h1>" + article.getAuthorName()+": "+article.getTitle() + "</h1>");
-		out.println("<h2>" + article.getText() + "</h2>");
-		out.println("<h3>" + article.getDate() + "</h3>");
-		out.println("<h2>" + Tools.linkTag("ShowArticles.jsp", "Vissza")
-				+ "</h2>");
-		out.println("</article>");
 		
+		try{
+			id = Integer.parseInt(Tools.stripHtmlRegex(request.getParameter("id")));
+			Article article = daoArticle.listOne(id);	
+			out.println("<article class=\"item\">");
+			out.println("<h1>" + article.getAuthorName()+": "+article.getTitle() + "</h1>");
+			out.println("<h2>" + article.getText() + "</h2>");
+			out.println("<h3>" + article.getDate() + "</h3>");
+			out.println("<h2>" + Tools.linkTag("ShowArticles.jsp", "Vissza")+ "</h2>");
+			out.println("</article>");
+			
+		}catch(Exception ex){
+			session.setAttribute("error", "Nincs ilyen cikk!");
+			response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
+			
+		}
+		
+	
 		out.println("<div class=\"form_cucc\">");
 		out.println("<h2>Hozzászólások:</h2>");
 		out.println("</div>");
@@ -91,7 +99,7 @@ public class ShowArticle extends HttpServlet {
 		
 			out.println("<form action=\"MessageServlet\" method=\"post\" name=\"messageForm\"accept-charset=\"UTF-8\">");		
 			//out.println("<input type=\"text\" name=\"name\" placeholder=\"Név\" value=\""+username+"\" />");		
-			out.println("<textarea name=\"message\" placeholder=\"Üzenet\"></textarea>");		
+			out.println("<textarea name=\"message\" placeholder=\"Üzenet\" required></textarea>");		
 			out.println("<input type =\"hidden\"name=\"articleId\" value="+id+">");		
 			out.println("<input type=\"submit\" value=\"Küldés\" />");
 					

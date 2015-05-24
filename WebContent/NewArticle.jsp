@@ -11,6 +11,7 @@
 <html>
 <head>
 <title>Új cikk</title>
+
 <link rel="stylesheet" href="style.css" type="text/css"></link>
 <meta charset="UTF-8">
 </head>
@@ -19,12 +20,12 @@
 	<h1>Jöhet az emberi cikk!</h1>
 	</header>
 	<div class="form_cucc">
-
-		<form action="ArticleServlet" method="post" name="messageForm"
+	
+		<form action="ArticleServlet" method="post" name="messageForm" 
 			accept-charset="UTF-8">
-			<input type="text" name="title" placeholder="Cím" />
-			<textarea name="text" placeholder="Szöveg"></textarea>
-			<input type="submit" value="Küldés" />
+			<input type="text" id="cim"name="title" placeholder="Cím" required/>
+			<textarea name="text" id="szoveg" placeholder="Szöveg" required></textarea>
+			<input type="submit" value="Küldés"/>
 <%
 			out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>");
 		%>
