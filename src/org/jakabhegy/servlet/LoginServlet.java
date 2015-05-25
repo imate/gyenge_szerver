@@ -48,31 +48,17 @@ public class LoginServlet extends HttpServlet {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
 		AccountDao dao = new AccountDao(em);
-		List<Account> accounts = dao.listAll("Account");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		Account user = null;
-		for (Account account : accounts) {
-			if (account.getUsername().equals(username)
-					&& account.getPassword().equals(password)) {
-				user = account;
-				break;
-			}
-		}
+		Account user = dao.listOne(username, password);
 
-		if (username.isEmpty() || password.isEmpty()) {
-			session.setAttribute("error",
-					"Nem adtál meg felhasználónevet, vagy jelszót!");
+		if (user == null) {
+			session.setAttribute("error", "Nincs ilyen felhasználó!");
+			session.setAttribute("reset", "Login.jsp");
 			response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
 		} else {
-			if (user == null) {
-				session.setAttribute("error", "Nincs ilyen felhasználó!");
-				response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
-			} else {
-				session.setAttribute("user", user);
-				response.sendRedirect(response.encodeRedirectURL("Hello"));
-			}
+			session.setAttribute("user", user);
+			response.sendRedirect(response.encodeRedirectURL("Hello"));
 		}
 	}
-
 }

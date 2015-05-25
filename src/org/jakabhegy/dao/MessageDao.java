@@ -71,4 +71,14 @@ public class MessageDao {
 		}
 	}
 
+	public List<Message> listByArticleId(int id) {
+		String sqlCommand = String.format(
+				"select s from Message s where s.articleId = '%s'", id); //$NON-NLS-1$
+		Query q = entityManager.createQuery(sqlCommand);
+		
+		List<Message> dataList = q.getResultList();
+
+		return dataList;
+	}
+
 }

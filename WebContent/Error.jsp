@@ -14,7 +14,7 @@
 	</header>
 	<article class="error_article"> <%=Tools.imgTag("img/error.png")%>
 	<h2><%= session.getAttribute("error") %></h2>
+	<%out.println("<h3>" + Tools.linkTag(session.getAttribute("reset").toString(), "Vissza") + "</h3>"); %>
 	</article>
-		<%out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>"); %>
 </body>
 </html>

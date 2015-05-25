@@ -1,8 +1,10 @@
 package org.jakabhegy.dao;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
 import org.jakabhegy.pojo.Account;
 
 public class AccountDao {
@@ -69,6 +71,27 @@ public class AccountDao {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public Account listOne(String username, String password) {
+		String sqlCommand = String
+				.format("select s from Account s where s.username = '%s' and s.password='%s'", username, password); //$NON-NLS-1$
+		Query q = entityManager.createQuery(sqlCommand);
+
+		try {
+			return (Account) q.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public boolean usernameIsUsed(String username) {
+		String sqlCommand = String.format(
+				"select count(s.username) from Account s where s.username = '%s'", username); //$NON-NLS-1$
+		Query q = entityManager.createQuery(sqlCommand);
+		long count=(long) q.getSingleResult();
+		System.out.println(count+" db "+username);
+		return count>0;
 	}
 
 }

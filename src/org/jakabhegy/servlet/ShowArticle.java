@@ -62,9 +62,9 @@ public class ShowArticle extends HttpServlet {
 			id = Integer.parseInt(Tools.stripHtmlRegex(request.getParameter("id")));
 			Article article = daoArticle.listOne(id);	
 			out.println("<article class=\"item\">");
-			out.println("<h1>" + article.getAuthorName()+": "+article.getTitle() + "</h1>");
+			out.println("<h1>" + article.getTitle() + "</h1>");
 			out.println("<h2>" + article.getText() + "</h2>");
-			out.println("<h3>" + article.getDate() + "</h3>");
+			out.println("<h3>" + article.getAuthorName()+", "+article.getFormattedDate() + "</h3>");
 			out.println("<h2>" + Tools.linkTag("ShowArticles.jsp", "Vissza")+ "</h2>");
 			out.println("</article>");
 			
@@ -74,24 +74,25 @@ public class ShowArticle extends HttpServlet {
 			
 		}
 		
-	
-		out.println("<div class=\"form_cucc\">");
-		out.println("<h2>Hozzászólások:</h2>");
-		out.println("</div>");
-		
 		MessageDao messageDao = new MessageDao(em);
-		List<Message> messageList = messageDao.listAll("Message");
+		List<Message> messageList = messageDao.listByArticleId(id);
 		out.println("<ul>");
 		int i = 1;
+		
+		out.println("<div class=\"form_cucc\">");
+		if (messageList.isEmpty()) {
+			out.println("<h2>Nincs még hozzászólás.</h2>");
+		} else {
+			out.println("<h2>Hozzászólások:</h2>");
+		}
+		out.println("</div>");
+		
 		for (Message message : messageList) {
-			if (message.getArticleId() == id) {
 				out.println("<li><article class=\"item\">");
 				out.println("<h1> #" + (i++) + " " + message.getAuthorName()+ "</h1>");
 				out.println("<h2>" + message.getText() + "</h2>");
 				out.println("<h3>" + message.getFormattedDate() + "</h3>");
 				out.println("</article></li>");
-			}
-
 		}
 		out.println("</ul>");
 		if(loggedIn){

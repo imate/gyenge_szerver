@@ -16,12 +16,11 @@
 		<form action="LoginServlet" method="post" name="messageForm"
 			accept-charset="UTF-8">
 
-			<input type="text" name="username" placeholder="Név" />
-			<input type="password" name="password" placeholder="Jelszó"></textarea>
+			<input type="text" name="username" placeholder="Név" required />
+			<input type="password" name="password" placeholder="Jelszó" required/>
 			<input type="submit" value="OK" />
 		</form>
 
 	</div>
-	</ul>
 </body>
 </html>

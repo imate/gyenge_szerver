@@ -24,7 +24,7 @@
 		<form action="ArticleServlet" method="post" name="messageForm" 
 			accept-charset="UTF-8">
 			<input type="text" id="cim"name="title" placeholder="Cím" required/>
-			<textarea name="text" id="szoveg" placeholder="Szöveg" required></textarea>
+			<textarea rows="10" name="text" id="szoveg" placeholder="Szöveg" required></textarea>
 			<input type="submit" value="Küldés"/>
 <%
 			out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>");
