@@ -9,11 +9,13 @@ public class Tools {
 				+ "</title>\n<link rel=\"stylesheet\" href=\"" + css
 				+ "\" type=\"text/css\"></link>\n"
 				+ "<link rel=\"shortcut icon\" href=\"img/favicon.ico\" />"
-				+ "</head>\n<body>";
+				//+"<meta charset=\"UTF-8\">"
+				+ "</head>\n<body>"
+				+"<div id=\"wrapper\">";
 	}
 
 	public static String afterBody() {
-		return "</body>\n</html>";
+		return "</div></body>\n</html>";
 	}
 
 	public static String imgTag(String source) {
