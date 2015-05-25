@@ -98,7 +98,7 @@ public class ShowArticle extends HttpServlet {
 		out.println("<ul>");
 		for (Message message : messageList) {
 			out.println("<li><article class=\"item\">");
-			out.println("<h1> #" + (i++) + " " + message.getAuthorName()
+			out.println("<h1> #" + (i++) + Tools.imgTag(message.getAuthor().getImgPath()) + " " +message.getAuthorName()
 					+ "</h1>");
 			out.println("<h2>" + message.getText() + "</h2>");
 			out.println("<h3>" + message.getFormattedDate() + "</h3>");

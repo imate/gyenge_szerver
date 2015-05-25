@@ -42,7 +42,8 @@ public class Tools {
 					+ linkTag("ShowArticles.jsp", "cikkek");
 		} else {
 
-			result += linkTag("MyAccount", user.getUsername())
+			result += imgTag(user.getImgPath())
+					+ linkTag("MyProfile.jsp", user.getUsername())
 					+ linkTag("NewArticle.jsp", "új cikk")
 					+ linkTag("ShowArticles.jsp", "cikkek")
 					// + linkTag("MyArticles", "cikkeim")

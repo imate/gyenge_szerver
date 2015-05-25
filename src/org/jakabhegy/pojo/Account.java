@@ -1,5 +1,6 @@
 package org.jakabhegy.pojo;
 
+import java.io.File;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -15,7 +16,8 @@ public class Account {
 	private String username;
 	private String password;
 	private Date regDate;
-	
+	private String imgName;
+
 	public Account() {
 		super();
 	}
@@ -52,11 +54,26 @@ public class Account {
 		this.regDate = regDate;
 	}
 
+	public String getImgName() {
+		return imgName;
+	}
+
+	public String getImgPath() {
+		if (imgName == null) {
+			return "img/user.jpg";
+		} else {
+			return "img/" + id + "_" + imgName;
+		}
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", username=" + username + ", password="
 				+ password + ", regDate=" + regDate + "]";
 	}
-	
-	
+
 }
