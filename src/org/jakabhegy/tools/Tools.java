@@ -5,7 +5,8 @@ public class Tools {
 	public static String beforeBody(String title, String css) {
 		return "<html>\n<head>\n<title>" + title
 				+ "</title>\n<link rel=\"stylesheet\" href=\"" + css
-				+ "\" type=\"text/css\"></link>\n</head>\n<body>";
+				+ "\" type=\"text/css\"></link>\n" +
+"<link rel=\"shortcut icon\" href=\"img/favicon.ico\" />"+"</head>\n<body>";
 	}
 
 	public static String afterBody() {
