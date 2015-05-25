@@ -21,9 +21,6 @@ header {
 	border-radius: 10px;
 }
 
-
-
-
 .form_cucc {
 	max-width: 400px;
 	margin: 10px 40px;
@@ -102,6 +99,7 @@ article, div {
 
 .item h2 {
 	padding: 0 10px;
+	white-space: pre-line;
 }
 
 .item h3 {
