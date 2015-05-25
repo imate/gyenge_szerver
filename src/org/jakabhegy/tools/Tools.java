@@ -15,18 +15,18 @@ public class Tools {
 	public static String imgTag(String source) {
 		return "<img src=\"" + source + "\"></img>";
 	}
-	
+
 	public static String stripHtmlRegex(String source) {
 		// Replace all tag characters with an empty string.
 		return source.replaceAll("<.*?>", "");
-	    }
-	
+	}
+
 	public static String linkTag(String url, String text) {
 		return "<a href=\"" + url + "\">" + text + "</a>";
 	}
 
 	public static String audioTag(String source, String type) {
-		return "<audio controls loop>\n<source src=\"" + source
-				+ "\" type=\"" + type + "\">\n</audio>";
+		return "<audio controls loop>\n<source src=\"" + source + "\" type=\""
+				+ type + "\">\n</audio>";
 	}
 }

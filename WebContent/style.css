@@ -53,7 +53,7 @@ header {
 	resize: none;
 }
 
-.form_cucc input[type="submit"], .form_cucc input[type="button"] {
+input[type="submit"], .form_cucc input[type="button"] {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -64,7 +64,7 @@ header {
 	color: black;
 }
 
-.form_cucc input[type="submit"]:hover, .form_cucc input[type="button"]:hover
+input[type="submit"]:hover, .form_cucc input[type="button"]:hover
 	{
 	background: #b9b9b9;
 }
@@ -73,7 +73,7 @@ ul {
 	list-style-type: none;
 }
 
-article {
+article, div {
 	background-color: rgb(196, 0, 0);
 	border-style: solid;
 	border-width: 3px;
@@ -106,7 +106,7 @@ article {
 
 .item h3 {
 	font-size: 80%;
-	padding: 0 0 0 10px;
+	padding-left: 10px;
 }
 
 .error_article {
@@ -146,4 +146,10 @@ article {
 	box-shadow: 0 0 20px #000000;
 	opacity: 1.0;
 	transition: all .5s;
+}
+
+.box{
+	display: inline-block;
+	margin: 10px;
+	padding: 5px;
 }
