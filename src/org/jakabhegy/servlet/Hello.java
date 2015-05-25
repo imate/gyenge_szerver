@@ -32,10 +32,13 @@ public class Hello extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println(Tools.beforeBody("Gyenge Szerver", "style.css"));
 
-		out.println("<header>");
-		out.println("<h1>Üdvözöllek a jakabhegyi gyenge szerveren!</h1>");
-		out.println("</header>");
-		out.println("<article class=\"hello_article\">");
+		out.println(Tools.makeHeader(user));
+		
+//		out.println("<header>");
+//		out.println("<h1>Üdvözöllek a jakabhegyi gyenge szerveren!</h1>");
+//		out.println("</header>");
+
+		out.println("<article class=\"hello_article\">");	
 		out.println("<nav>");
 
 		// out.println("<h2>"+ Tools.linkTag("Message.jsp",

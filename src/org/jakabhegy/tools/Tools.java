@@ -1,12 +1,15 @@
 package org.jakabhegy.tools;
 
+import org.jakabhegy.pojo.Account;
+
 public class Tools {
 
 	public static String beforeBody(String title, String css) {
 		return "<html>\n<head>\n<title>" + title
 				+ "</title>\n<link rel=\"stylesheet\" href=\"" + css
-				+ "\" type=\"text/css\"></link>\n" +
-"<link rel=\"shortcut icon\" href=\"img/favicon.ico\" />"+"</head>\n<body>";
+				+ "\" type=\"text/css\"></link>\n"
+				+ "<link rel=\"shortcut icon\" href=\"img/favicon.ico\" />"
+				+ "</head>\n<body>";
 	}
 
 	public static String afterBody() {
@@ -29,5 +32,22 @@ public class Tools {
 	public static String audioTag(String source, String type) {
 		return "<audio controls loop>\n<source src=\"" + source + "\" type=\""
 				+ type + "\">\n</audio>";
+	}
+
+	public static String makeHeader(Account user) {
+		String result = "";
+		if (user == null) {
+			result += linkTag("Login.jsp", "bejelentkezés")
+					+ linkTag("Reg.jsp", "regisztráció")
+					+ linkTag("ShowArticles.jsp", "cikkek");
+		} else {
+
+			result += linkTag("MyAccount", user.getUsername())
+					+ linkTag("NewArticle.jsp", "új cikk")
+					+ linkTag("ShowArticles.jsp", "cikkek")
+					// + linkTag("MyArticles", "cikkeim")
+					+ linkTag("LogoutServlet", "kijelentkezés");
+		}
+		return "<header><nav>" + result + "</nav></header>";
 	}
 }

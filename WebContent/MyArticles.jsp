@@ -23,7 +23,8 @@
 		EntityManagerFactory factory= Persistence.createEntityManagerFactory("messages");
 		EntityManager em= factory.createEntityManager();		
 		ArticleDao dao = new ArticleDao(em);
-		List<Article> articleList= dao.listAll("Article");
+		Account user=(Account)session.getAttribute("user");
+		List<Article> articleList= dao.listByUser(user);
 		%><ul><% 
 		int i=1;
 		for (Article article : articleList) {

@@ -1,8 +1,11 @@
 package org.jakabhegy.dao;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import org.jakabhegy.pojo.Account;
 import org.jakabhegy.pojo.Article;
 
 public class ArticleDao {
@@ -49,7 +52,8 @@ public class ArticleDao {
 
 	public List<Article> listAll(String tableName) {
 
-		Query query = this.entityManager.createQuery("Select t from " + tableName + " t"); //$NON-NLS-1$ //$NON-NLS-2$
+		Query query = this.entityManager
+				.createQuery("Select t from " + tableName + " t"); //$NON-NLS-1$ //$NON-NLS-2$
 		@SuppressWarnings("unchecked")
 		List<Article> dataList = query.getResultList();
 

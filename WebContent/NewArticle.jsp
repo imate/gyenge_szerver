@@ -1,3 +1,4 @@
+<%@page import="org.jakabhegy.pojo.Account"%>
 <%@page import="org.jakabhegy.dao.ArticleDao"%>
 <%@page import="org.jakabhegy.pojo.Article"%>
 <%@page import="java.util.List"%>
@@ -16,9 +17,8 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<header>
-	<h1>Jöhet az emberi cikk!</h1>
-	</header>
+	<%= Tools.makeHeader((Account)session.getAttribute("user")) %>
+	
 	<div class="form_cucc">
 	
 		<form action="ArticleServlet" method="post" name="messageForm" 

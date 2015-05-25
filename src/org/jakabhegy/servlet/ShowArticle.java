@@ -51,9 +51,11 @@ public class ShowArticle extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		int id = 0;
 		out.println(Tools.beforeBody("Gyenge Szerver", "style.css"));
-		out.println("<header>");
-		out.println("<h1>Jakabhegyi gyenge szerver!</h1>");
-		out.println("</header>");
+		
+		out.println(Tools.makeHeader(user));
+//		out.println("<header>");
+//		out.println("<h1>Jakabhegyi gyenge szerver!</h1>");
+//		out.println("</header>");
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("messages");
 		EntityManager em = factory.createEntityManager();
