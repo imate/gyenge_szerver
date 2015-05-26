@@ -19,20 +19,21 @@ body {
 header {
 	background-color: #bdac9f;
 	display: block;
-	height: 50px;
+	height: 48px;
 	text-align: center;
 	border-style: solid;
-	border-width: 3px;
-	border-radius: 10px;
+	border-radius: 7px  7px 0 0;
+	border-width: 0 0 3px 0;
 }
 
 header img {
 	float: left;
 	height: 40px;
 	width: auto;
-	padding: 4px;
+	max-width: 40px;
 	border-style: solid;
 	border-width: 1px;
+	margin: 4px;
 }
 
 header nav {
@@ -114,10 +115,15 @@ article, div {
 	text-align: left;
 }
 
-.item img{
+.item img {
 	float: left;
 	height: 40px;
 	width: auto;
+	max-width: 40px;
+	width: auto;
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
 	margin: -5px 3px 0 0;
 }
 
@@ -135,13 +141,11 @@ article, div {
 .item h2 {
 	padding: 0 10px;
 	white-space: pre-line;
-	
 }
 
 .item h3 {
 	font-size: 80%;
 	padding-left: 10px;
-	
 }
 
 .error_article {
@@ -189,12 +193,13 @@ article, div {
 	padding: 5px;
 }
 
-
 #wrapper {
+	display: block;
 	margin: 20px auto;
 	width: 950px;
 	background-color: #fff1e5;
 }
+
 .profile {
 	padding: 10px;
 	width: 400px;
@@ -206,10 +211,11 @@ article, div {
 	border-width: 3px;
 	height: 300px;
 	width: auto;
+	max-width: 300px;
+	width: auto;
 	margin-bottom: 10px;
 }
 
 .profile input[type="submit"] {
 	width: 300px;
-
 }
