@@ -15,7 +15,7 @@ public class ArticleDao {
 		super();
 		this.entityManager = entityManager;
 	}
-
+	
 	public Article create(Article article) {
 		try {
 			this.entityManager.getTransaction().begin();
