@@ -9,9 +9,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%=Tools.beforeBody("Új cikk", "style.css") %>
-	<%= Tools.makeHeader((Account)session.getAttribute("user")) %>
-	
+<%=Tools.beforeBody("Új cikk", "style.css")%>
+<%
+	Account user = (Account) session.getAttribute("user");
+	if (user == null) {
+		response.sendRedirect(response.encodeRedirectURL("Login.jsp"));
+	}
+%>
+<%= Tools.makeHeader(user) %>
 	<div class="form_cucc">
 	
 		<form action="ArticleServlet" method="post" name="messageForm" 
@@ -26,4 +31,4 @@
 		
 	</div>
 	
-<%=Tools.beforeBody("Új cikk", "style.css") %>
+<%=Tools.afterBody() %>

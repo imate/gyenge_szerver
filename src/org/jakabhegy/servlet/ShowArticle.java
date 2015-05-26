@@ -53,9 +53,6 @@ public class ShowArticle extends HttpServlet {
 		out.println(Tools.beforeBody("Gyenge Szerver", "style.css"));
 		
 		out.println(Tools.makeHeader(user));
-//		out.println("<header>");
-//		out.println("<h1>Jakabhegyi gyenge szerver!</h1>");
-//		out.println("</header>");
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("messages");
 		EntityManager em = factory.createEntityManager();
@@ -74,7 +71,6 @@ public class ShowArticle extends HttpServlet {
 			out.println("<h2>" + Tools.linkTag("ShowArticles.jsp", "Vissza")
 					+ "</h2>");
 			out.println("</article>");
-			out.println("<ul>");
 
 		} catch (Exception ex) {
 			session.setAttribute("reset", "ShowArticles.jsp");
@@ -86,16 +82,16 @@ public class ShowArticle extends HttpServlet {
 		MessageDao messageDao = new MessageDao(em);
 		List<Message> messageList = messageDao.listByArticleId(id);
 
-		out.println("<div class=\"box\">");
+		out.println("<ul>");
+		out.println("<li>");
 		if (messageList.isEmpty()) {
 			out.println("<h2>Nincs még hozzászólás.</h2>");
 		} else {
 			out.println("<h2>Hozzászólások:</h2>");
 		}
-		out.println("</div>");
+		out.println("</li>");
 
 		int i = 1;
-		out.println("<ul>");
 		for (Message message : messageList) {
 			out.println("<li><article class=\"item\">");
 			out.println("<h1> #" + (i++) + Tools.imgTag(message.getAuthor().getImgPath()) + " " +message.getAuthorName()
@@ -104,7 +100,7 @@ public class ShowArticle extends HttpServlet {
 			out.println("<h3>" + message.getFormattedDate() + "</h3>");
 			out.println("</article></li>");
 		}
-		out.println("</ul>");
+		out.println("<li>");
 		if (loggedIn) {
 			out.println("<div class=\"form_cucc\">");
 
@@ -119,14 +115,13 @@ public class ShowArticle extends HttpServlet {
 			out.println("</div>");
 		} else {
 			out.println("<div class=\"box\"><h2>A hozzászóláshoz be kell jelentkezned!</h2>");
-			// out.println("<h2>" + Tools.linkTag("Login.jsp", "Bejelentkezés")
-			// + Tools.linkTag("Reg.jsp", "Regisztráció")
-			// + "</h2></div>");
 			out.println("<form style='float: left; padding: 5px; width: 40%;' method=\"post\" action=\"Login.jsp\"><input type=\"submit\" value=\"Bejelentkezés\"/></form>");
 			out.println("<form style='float: right; padding: 5px; width: 40%;' method=\"post\" action=\"Reg.jsp\"><input type=\"submit\" value=\"Regisztráció\"/</form>");
 			out.println("</div>");
 		}
-
+		out.println("</li>");
+		out.println("</ul>");
+		out.println("</ul>");
 		out.println(Tools.afterBody());
 	}
 
