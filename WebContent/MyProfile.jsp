@@ -24,4 +24,4 @@
 	<%
 		out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>");
 	%>
-<%=Tools.beforeBody("Új cikk", "style.css") %>
+<%=Tools.afterBody() %>
