@@ -9,9 +9,8 @@ public class Tools {
 				+ "</title>\n<link rel=\"stylesheet\" href=\"" + css
 				+ "\" type=\"text/css\"></link>\n"
 				+ "<link rel=\"shortcut icon\" href=\"img/favicon.ico\" />"
-				//+"<meta charset=\"UTF-8\">"
-				+ "</head>\n<body>"
-				+"<div id=\"wrapper\">";
+				// +"<meta charset=\"UTF-8\">"
+				+ "</head>\n<body>" + "<div id=\"wrapper\">";
 	}
 
 	public static String afterBody() {

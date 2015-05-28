@@ -22,7 +22,7 @@ header {
 	height: 48px;
 	text-align: center;
 	border-style: solid;
-	border-radius: 7px  7px 0 0;
+	border-radius: 7px 7px 0 0;
 	border-width: 0 0 3px 0;
 }
 
@@ -80,7 +80,7 @@ header nav a {
 	resize: none;
 }
 
-input[type="submit"], .form_cucc input[type="button"] {
+.form_cucc input[type="submit"], .form_cucc input[type="button"] {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -91,7 +91,8 @@ input[type="submit"], .form_cucc input[type="button"] {
 	color: black;
 }
 
-input[type="submit"]:hover, .form_cucc input[type="button"]:hover {
+.form_cucc input[type="submit"]:hover, .form_cucc input[type="button"]:hover
+	{
 	background: #b9b9b9;
 }
 

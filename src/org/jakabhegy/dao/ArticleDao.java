@@ -15,7 +15,7 @@ public class ArticleDao {
 		super();
 		this.entityManager = entityManager;
 	}
-	
+
 	public Article create(Article article) {
 		try {
 			this.entityManager.getTransaction().begin();
@@ -72,6 +72,15 @@ public class ArticleDao {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public List<Article> searchInText(String text) {
+		String command = "Select t from Article t where t.text like :text";
+		Query query = this.entityManager.createQuery(command);
+		query.setParameter("text", "%" + text + "%");
+
+		List<Article> list = query.getResultList();
+		return list;
 	}
 
 }

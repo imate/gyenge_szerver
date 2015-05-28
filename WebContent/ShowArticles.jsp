@@ -12,13 +12,27 @@
 <%=Tools.beforeBody("Cikkek", "style.css") %>
 	
 	<%= Tools.makeHeader((Account)session.getAttribute("user")) %>
-	
-	<% 
-		EntityManagerFactory factory= Persistence.createEntityManagerFactory("messages");
-		EntityManager em= factory.createEntityManager();		
-		ArticleDao dao = new ArticleDao(em);
-		List<Article> articleList= dao.listAll("Article");
-		%><ul><% 
+	<% String text_search=request.getParameter("text_search");
+	boolean search=text_search!=null;
+	%>
+
+<form method="post" action="ShowArticles.jsp" class="form_cucc" accept-charset="utf-8">
+<input type="text" name="text_search" required />
+<input type="submit"value="keresés" />
+</form>
+
+<%
+	EntityManagerFactory factory = Persistence
+			.createEntityManagerFactory("messages");
+	EntityManager em = factory.createEntityManager();
+	ArticleDao dao = new ArticleDao(em);
+	List<Article> articleList;
+	if (search) {
+		articleList = dao.searchInText(text_search);
+	} else {
+		articleList = dao.listAll("Article");
+	}
+%><ul><% 
 		int i=1;
 		for (Article article : articleList) {
 			
