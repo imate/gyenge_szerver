@@ -47,7 +47,8 @@ public class Tools {
 					+ linkTag("MyProfile.jsp", user.getUsername())
 					+ linkTag("NewArticle.jsp", "új cikk")
 					+ linkTag("ShowArticles.jsp", "cikkek")
-					// + linkTag("MyArticles", "cikkeim")
+					+ linkTag("ShowArticles.jsp?author_id=" + user.getId(),
+							"cikkeim")
 					+ linkTag("LogoutServlet", "kijelentkezés");
 		}
 		return "<header><nav>" + result + "</nav></header>";

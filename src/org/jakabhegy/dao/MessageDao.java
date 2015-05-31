@@ -1,8 +1,11 @@
 package org.jakabhegy.dao;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import org.jakabhegy.pojo.Article;
 import org.jakabhegy.pojo.Message;
 
 public class MessageDao {
@@ -71,9 +74,9 @@ public class MessageDao {
 		}
 	}
 
-	public List<Message> listByArticleId(int id) {
+	public List<Message> listByArticle(Article article) {
 		String sqlCommand = String.format(
-				"select s from Message s where s.articleId = '%s'", id); //$NON-NLS-1$
+				"select s from Message s where s.article.id = '%s'", article.getId()); //$NON-NLS-1$
 		Query q = entityManager.createQuery(sqlCommand);
 		
 		List<Message> dataList = q.getResultList();

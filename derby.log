@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat May 30 19:37:10 CEST 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014d-a5e6-1c2f-000000515da8 
+Sun May 31 14:52:37 CEST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014d-aa07-f217-0000005d07a8 
 on database directory F:\git\gyenge_szerver\nagyonDb2 with class loader WebAppClassLoader=gyenge_szerver@1fbca86 
 Loaded from file:/C:/Documents%20and%20Settings/imate/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation

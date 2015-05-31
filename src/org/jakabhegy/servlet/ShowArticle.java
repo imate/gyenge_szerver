@@ -80,7 +80,8 @@ public class ShowArticle extends HttpServlet {
 		}
 
 		MessageDao messageDao = new MessageDao(em);
-		List<Message> messageList = messageDao.listByArticleId(id);
+		ArticleDao articleDao=new ArticleDao(em);
+		List<Message> messageList = messageDao.listByArticle(articleDao.listOne(id));
 
 		out.println("<ul>");
 		out.println("<li>");

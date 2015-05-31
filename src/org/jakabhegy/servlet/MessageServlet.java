@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jakabhegy.dao.ArticleDao;
 import org.jakabhegy.dao.MessageDao;
 import org.jakabhegy.pojo.Account;
 import org.jakabhegy.pojo.Message;
@@ -52,22 +53,19 @@ public class MessageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	
-	
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Account user=(Account) session.getAttribute("user");
-		
+		Account user = (Account) session.getAttribute("user");
+
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
-		MessageDao dao = new MessageDao(em);
-		
-	
-			// request.getSession().setAttribute("students", students);
-		
-	
+		MessageDao messageDao = new MessageDao(em);
+		ArticleDao articleDao = new ArticleDao(em);
+
+		// request.getSession().setAttribute("students", students);
+
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
 		String text = Tools.stripHtmlRegex(request.getParameter("message"));
 		Date actDate = Calendar.getInstance().getTime();
@@ -75,11 +73,12 @@ public class MessageServlet extends HttpServlet {
 		message.setAuthor(user);
 		message.setDate(actDate);
 		message.setText(text);
-		message.setArticleId(articleId);
-	
-		dao.create(message);
+		message.setArticle(articleDao.listOne(articleId));
 
-		response.sendRedirect(response.encodeRedirectURL("ShowArticle?id="+articleId));
+		messageDao.create(message);
+
+		response.sendRedirect(response.encodeRedirectURL("ShowArticle?id="
+				+ articleId));
 	}
 
 }

@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import org.jakabhegy.pojo.Account;
 import org.jakabhegy.pojo.Article;
+import org.jakabhegy.pojo.Message;
 
 public class ArticleDao {
 	private EntityManager entityManager;
@@ -72,6 +73,16 @@ public class ArticleDao {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public List<Article> listByAuthor(Account author) {
+		String sqlCommand = String.format(
+				"select s from Article s where s.author.id = '%s'", author.getId()); //$NON-NLS-1$
+		Query q = entityManager.createQuery(sqlCommand);
+		
+		List<Article> dataList = q.getResultList();
+
+		return dataList;
 	}
 
 	public List<Article> searchInText(String text) {

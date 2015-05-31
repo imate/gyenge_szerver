@@ -7,16 +7,23 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Message {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int articleId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "article_id")
+	private Article article;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "author_id")
 	private Account author;
 	@Column(length = 1000)
 	private String text;
@@ -67,12 +74,12 @@ public class Message {
 		this.id = id;
 	}
 
-	public int getArticleId() {
-		return articleId;
+	public Article getArticle() {
+		return article;
 	}
 
-	public void setArticleId(int articleId) {
-		this.articleId = articleId;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
 	@Override
