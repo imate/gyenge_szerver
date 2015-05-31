@@ -75,9 +75,9 @@ public class ArticleDao {
 	}
 
 	public List<Article> searchInText(String text) {
-		String command = "Select t from Article t where t.text like :text";
+		String command = "Select t from Article t where upper(t.text) like :text";
 		Query query = this.entityManager.createQuery(command);
-		query.setParameter("text", "%" + text + "%");
+		query.setParameter("text", "%" + text.toUpperCase() + "%");
 
 		List<Article> list = query.getResultList();
 		return list;
