@@ -2,16 +2,16 @@ package org.jakabhegy.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.Properties;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,107 +27,87 @@ import org.jakabhegy.tools.Tools;
 @WebServlet("/Email")
 public class Email extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Email() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
- 
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Email() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		
+
 		out.println(Tools.beforeBody("Gyenge Szerver", "style.css"));
-		
-		 Properties mailServerProperties;
-		 Session getMailSession;
-		 MimeMessage generateMailMessage;
-		 try {
-			//Step1		
-				System.out.println("\n 1st ===> setup Mail Server Properties..");
-				mailServerProperties = System.getProperties();
-				mailServerProperties.put("mail.smtp.port", "587");
-				mailServerProperties.put("mail.smtp.auth", "true");
-				mailServerProperties.put("mail.smtp.starttls.enable", "true");
-				mailServerProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-				System.out.println("Mail Server Properties have been setup successfully..");
-		 
-		//Step2		
-				System.out.println("\n\n 2nd ===> get Mail Session..");
-				getMailSession = Session.getDefaultInstance(mailServerProperties, null);
-				generateMailMessage = new MimeMessage(getMailSession);
-				generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("sztomi1994@gmail.com"));
-				generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("test2@crunchify.com"));
-				generateMailMessage.setSubject("Greetings from Crunchify..");
-				String emailBody = "Test email by Crunchify.com JavaMail API example. " + "<br><br> Regards, <br>Crunchify Admin";
-				generateMailMessage.setContent(emailBody, "text/html");
-				System.out.println("Mail Session has been created successfully..");
-		 
-		//Step3		
-				System.out.println("\n\n 3rd ===> Get Session and Send mail");
-				Transport transport = getMailSession.getTransport("smtp");
-				
-				// Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-				transport.connect("smtp.gmail.com", "csoroskrokodil@gmail.com", "456852159357");
-				transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
-				transport.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-			 
-			
-		
-		
-	/*	
-		final String username = "csoroskrokodil@gmail.com";
-		final String password = "456852159357";
- 
+
+		// Recipient's email ID needs to be mentioned.
+		String to = "sztomi1994@gmail.com";// change accordingly
+
+		// Sender's email ID needs to be mentioned
+		String from = "primaszerver@gmail.com";// change accordingly
+		final String username = "primaszerver";// change accordingly
+		final String password = "Gyengeszerver07";// change accordingly
+
+		// Assuming you are sending email through relay.jangosmtp.net
+		String host = "smtp.gmail.com";
+
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", "587");
- 
+
+		// Get the Session object.
 		Session session = Session.getInstance(props,
-		  new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username, password);
-			}
-		  });
- 
+				new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(username, password);
+					}
+				});
+
 		try {
- 
+			// Create a default MimeMessage object.
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("csoroskrokodil@gmail.com"));
+
+			// Set From: header field of the header.
+			message.setFrom(new InternetAddress(from));
+
+			// Set To: header field of the header.
 			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse("sztomi1994@gmail.com"));
+					InternetAddress.parse(to));
+
+			// Set Subject: header field
 			message.setSubject("Testing Subject");
-			message.setText("Dear Mail Crawler,"
-				+ "\n\n No spam to my email, please!");
- 
+
+			// Now set the actual message
+			message.setText("Hello, this is sample for to check send "
+					+ "email using JavaMailAPI ");
+
+			// Send message
 			Transport.send(message);
- 
-			System.out.println("Done");
- 
+
+			System.out.println("Sent message successfully....");
+
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-		*/
-		
+
 		out.println(Tools.afterBody());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 	}
 
 }
