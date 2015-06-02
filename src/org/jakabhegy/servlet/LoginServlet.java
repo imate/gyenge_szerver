@@ -56,7 +56,11 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("error", "Nincs ilyen felhasználó!");
 			session.setAttribute("reset", "Login.jsp");
 			response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
-		} else {
+		} else if(!user.isEllenorzott()){
+			session.setAttribute("error", "Nincs aktiválva a felhasználó!");
+			session.setAttribute("reset", "Login.jsp");
+			response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
+		}else{
 			session.setAttribute("user", user);
 			response.sendRedirect(response.encodeRedirectURL("Hello"));
 		}

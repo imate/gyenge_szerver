@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.jakabhegy.pojo.Account;
+import org.jakabhegy.tools.RandomString;
 import org.jakabhegy.tools.Tools;
 
 @WebServlet("/Hello")
@@ -25,7 +26,7 @@ public class Hello extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Account user = null;
-		boolean loggedIn = session.getAttribute("user") != null;
+		boolean loggedIn = session.getAttribute("user") != null;		
 		if (loggedIn)
 			user = (Account) session.getAttribute("user");
 

@@ -15,6 +15,7 @@
 			<input type="text" name="username" placeholder="Név" required />
 			<input type="password" name="password" placeholder="Jelszó" required />
 			<input type="password" name="password2" placeholder="Jelszó ismét" required />
+			<input type="text" name="email" placeholder="Email" required />
 			<input type="submit" value="OK" />
 		</form>
 		<%out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>"); %>

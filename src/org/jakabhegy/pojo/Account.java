@@ -17,6 +17,9 @@ public class Account {
 	private String password;
 	private Date regDate;
 	private String imgName;
+	private String email;
+	private boolean ellenorzott;
+	private String checkText;
 
 	public Account() {
 		super();
@@ -64,6 +67,35 @@ public class Account {
 		} else {
 			return "img/" + id + "_" + imgName;
 		}
+	}
+	
+	
+	
+	public String getCheckText() {
+		return checkText;
+	}
+
+	public void setCheckText(String checkText) {
+		this.checkText = checkText;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+
+	public boolean isEllenorzott() {
+		return ellenorzott;
+	}
+
+	public void setEllenorzott(boolean ellenorzott) {
+		this.ellenorzott = ellenorzott;
 	}
 
 	public void setImgName(String imgName) {
