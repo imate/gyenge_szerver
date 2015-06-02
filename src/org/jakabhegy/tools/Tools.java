@@ -10,8 +10,10 @@ public class Tools {
 				+ "\" type=\"text/css\"></link>\n"
 				+ "<link rel=\"shortcut icon\" href=\"img/favicon.ico\" />"
 				// +"<meta charset=\"UTF-8\">"
-				+ "</head>\n<body>" + "<div id=\"wrapper\">";
-	}
+				+ "</head>\n<body>" 
+				+ "<div id=\"wrapper\">"
+				+"<h6>"+linkTag("Hello", "Gyenge szerver")+"</h6>";
+	}	
 
 	public static String afterBody() {
 		return "</div></body>\n</html>";
@@ -47,8 +49,7 @@ public class Tools {
 					+ linkTag("MyProfile.jsp", user.getUsername())
 					+ linkTag("NewArticle.jsp", "új cikk")
 					+ linkTag("ShowArticles.jsp", "cikkek")
-					+ linkTag("ShowArticles.jsp?author_id=" + user.getId(),
-							"cikkeim")
+					+ linkTag("ShowArticles.jsp?author_id=" + user.getId(),"cikkeim")
 					+ linkTag("LogoutServlet", "kijelentkezés");
 		}
 		return "<header><nav>" + result + "</nav></header>";

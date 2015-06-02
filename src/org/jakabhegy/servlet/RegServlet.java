@@ -148,7 +148,7 @@ public class RegServlet extends HttpServlet {
 
 			randomS.nextString();
 			try {
-				mail.sendMail("Gyenge szerver regisztráció", "Az alábbi linken aktiválhatja regisztrációját:\n http://localhost:8080/RegServlet?id="
+				mail.sendMail("Gyenge szerver regisztráció", "Az alábbi linken aktiválhatja regisztrációját:\n http://31.24.186.139:8080/RegServlet?id="
 						+ user.getId() + "&checkText=" + randomText,
 						user.getEmail());
 				out.println(Tools.beforeBody("Regisztráció", "style.css"));
