@@ -3,9 +3,6 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%=Tools.beforeBody("Hiba", "style.css") %>
-	<header>
-	<h1>Hiba történt!</h1>
-	</header>
 	<article class="error_article"> <%=Tools.imgTag("img/error.png")%>
 	<h2><%= session.getAttribute("error") %></h2>
 	<%out.println("<h3>" + Tools.linkTag(session.getAttribute("reset").toString(), "Vissza") + "</h3>"); %>

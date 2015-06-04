@@ -23,8 +23,7 @@ header {
 	height: 48px;
 	text-align: center;
 	border-style: solid;
-	border-radius: 7px 7px 0 0;
-	border-width: 0 0 3px 0;
+	border-width: 3px 0;
 }
 
 header img {
@@ -39,7 +38,6 @@ header img {
 
 header nav {
 	padding: 0 15px;
-	margin: 5px;
 	line-height: 50px;
 }
 

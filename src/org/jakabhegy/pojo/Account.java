@@ -65,12 +65,10 @@ public class Account {
 		if (imgName == null) {
 			return "img/user.jpg";
 		} else {
-			return "img/" + id + "_" + imgName;
+			return "img/" + "profile_" + getId() + ".jpg";
 		}
 	}
-	
-	
-	
+
 	public String getCheckText() {
 		return checkText;
 	}
@@ -86,9 +84,6 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-
 
 	public boolean isEllenorzott() {
 		return ellenorzott;

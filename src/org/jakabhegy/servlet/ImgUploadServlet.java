@@ -57,10 +57,8 @@ public class ImgUploadServlet extends HttpServlet {
 						String name = new File(item.getName()).getName();
 						System.out.println(name);
 						item.write(new File(upload_directory + File.separator
-								+ user.getId() + "_" + name));
+								+ "profile_" + user.getId() + ".jpg"));
 						user.setImgName(name);
-						System.out.println(upload_directory + File.separator
-								+ user.getId() + "_" + name);
 					}
 				}
 
