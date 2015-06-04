@@ -10,13 +10,17 @@ public class Tools {
 				+ "\" type=\"text/css\"></link>\n"
 				+ "<link rel=\"shortcut icon\" href=\"img/favicon.ico\" />"
 				// +"<meta charset=\"UTF-8\">"
-				+ "</head>\n<body>" 
-				+ "<div id=\"wrapper\">"
-				+"<h6>"+linkTag("Hello", "Gyenge szerver")+"</h6>";
-	}	
+				+ "</head>\n<body>" + "<div id=\"wrapper\">" + "<h6>"
+				+ linkTag("Hello", "Gyenge szerver") + "</h6>";
+	}
 
 	public static String afterBody() {
-		return "</div></body>\n</html>";
+		return "</div>" + makeFooter() + "</body>\n</html>";
+	}
+
+	private static String makeFooter() {
+		String footer = "<footer>Az oldalt az Alsópáhoki Gyenge Adatközpont<sup>TM</sup> üzemelteti.</br>email: primaszerver@gmail.com</footer>";
+		return footer;
 	}
 
 	public static String imgTag(String source) {
@@ -49,7 +53,8 @@ public class Tools {
 					+ linkTag("MyProfile.jsp", user.getUsername())
 					+ linkTag("NewArticle.jsp", "új cikk")
 					+ linkTag("ShowArticles.jsp", "cikkek")
-					+ linkTag("ShowArticles.jsp?author_id=" + user.getId(),"cikkeim")
+					+ linkTag("ShowArticles.jsp?author_id=" + user.getId(),
+							"cikkeim")
 					+ linkTag("LogoutServlet", "kijelentkezés");
 		}
 		return "<header><nav>" + result + "</nav></header>";
