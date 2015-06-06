@@ -78,7 +78,7 @@ header nav a {
 	resize: none;
 }
 
-.form_cucc input[type="submit"], .form_cucc input[type="button"] {
+input[type="submit"], input[type="button"] {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -89,7 +89,7 @@ header nav a {
 	color: black;
 }
 
-.form_cucc input[type="submit"]:hover, .form_cucc input[type="button"]:hover
+input[type="submit"]:hover, input[type="button"]:hover
 	{
 	background: #b9b9b9;
 }
@@ -219,6 +219,10 @@ article, div {
 	padding: 10px;
 	width: 400px;
 	text-align: center;
+}
+
+.profile h2 {
+	text-align: left;
 }
 
 .profile img {

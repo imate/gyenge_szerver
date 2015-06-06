@@ -80,6 +80,10 @@ public class Article {
 		return dateFormat.format(date);
 	}
 
+	public String getArticleLink() {
+		return "ShowArticle?id=" + getId();
+	}
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", text=" + text

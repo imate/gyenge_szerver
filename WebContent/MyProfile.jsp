@@ -17,8 +17,8 @@
 
 		<form action="ImgUploadServlet" method="post"
 			enctype="multipart/form-data">
-			<input type="file" name="file" accept=".jpg" /> <input
-				type="submit" value="upload" />
+			<input type="file" name="file" accept=".jpg" />
+			<input type="submit" value="upload" />
 		</form>
 	</div>
 	<%

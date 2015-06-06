@@ -96,6 +96,10 @@ public class Account {
 	public void setImgName(String imgName) {
 		this.imgName = imgName;
 	}
+	
+	public String getProfileLink() {
+		return "Profile.jsp?id=" + getId();
+	}
 
 	@Override
 	public String toString() {

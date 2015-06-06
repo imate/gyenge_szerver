@@ -66,7 +66,7 @@ public class ShowArticle extends HttpServlet {
 			out.println("<article class=\"item\">");
 			out.println("<h1>" + article.getTitle() + "</h1>");
 			out.println("<h2>" + article.getText() + "</h2>");
-			out.println("<h3>" + article.getAuthorName() + ", "
+			out.println("<h3>" + Tools.linkTag(article.getAuthor().getProfileLink(), article.getAuthorName()) + ", "
 					+ article.getFormattedDate() + "</h3>");
 			out.println("<h2>" + Tools.linkTag("ShowArticles.jsp", "Vissza")
 					+ "</h2>");
@@ -95,8 +95,12 @@ public class ShowArticle extends HttpServlet {
 		int i = 1;
 		for (Message message : messageList) {
 			out.println("<li><article class=\"item\">");
-			out.println("<h1> #" + (i++) + Tools.imgTag(message.getAuthor().getImgPath()) + " " +message.getAuthorName()
-					+ "</h1>");
+			out.println("<h1> #"
+					+ (i++)
+					+ Tools.imgTag(message.getAuthor().getImgPath())
+					+ " "
+					+ Tools.linkTag(message.getAuthor().getProfileLink(),
+							message.getAuthorName()) + "</h1>");
 			out.println("<h2>" + message.getText() + "</h2>");
 			out.println("<h3>" + message.getFormattedDate() + "</h3>");
 			out.println("</article></li>");
