@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.jakabhegy.tools.Tools;
+
 @Entity
 public class Article {
 	@Id
@@ -25,7 +27,7 @@ public class Article {
 	@JoinColumn(name = "author_id")
 	private Account author;
 	private Date date;
-	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	//private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	public Article() {
 		super();
@@ -76,9 +78,7 @@ public class Article {
 		this.date = date;
 	}
 
-	public String getFormattedDate() {
-		return dateFormat.format(date);
-	}
+	
 
 	public String getArticleLink() {
 		return "ShowArticle?id=" + getId();
@@ -88,7 +88,7 @@ public class Article {
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", text=" + text
 				+ ", creator=" + getAuthorName() + ", date="
-				+ dateFormat.format(date) + "]";
+				+ Tools.getFormattedDate(date) + "]";
 	}
 
 }

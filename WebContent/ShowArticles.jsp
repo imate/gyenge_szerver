@@ -54,7 +54,7 @@
 			<% out.println("#"+(i++)+" "+Tools.linkTag("ShowArticle?id="+article.getId(), article.getTitle()));%>
 		</h1>
 		<!-- <h2><%= article.getText() %></h2> -->
-		<h3><%= Tools.linkTag(article.getAuthor().getProfileLink(), article.getAuthorName())+", "+article.getFormattedDate() %></h3>
+		<h3><%= Tools.linkTag(article.getAuthor().getProfileLink(), article.getAuthorName())+", "+Tools.getFormattedDate(article.getDate()) %></h3>
 		</article></li>
 
 

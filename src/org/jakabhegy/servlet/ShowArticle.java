@@ -67,7 +67,7 @@ public class ShowArticle extends HttpServlet {
 			out.println("<h1>" + article.getTitle() + "</h1>");
 			out.println("<h2>" + article.getText() + "</h2>");
 			out.println("<h3>" + Tools.linkTag(article.getAuthor().getProfileLink(), article.getAuthorName()) + ", "
-					+ article.getFormattedDate() + "</h3>");
+					+ Tools.getFormattedDate(article.getDate()) + "</h3>");
 			out.println("<h2>" + Tools.linkTag("ShowArticles.jsp", "Vissza")
 					+ "</h2>");
 			out.println("</article>");

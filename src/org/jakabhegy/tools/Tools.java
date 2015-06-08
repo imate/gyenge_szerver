@@ -1,9 +1,18 @@
 package org.jakabhegy.tools;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.jakabhegy.pojo.Account;
 
 public class Tools {
-
+	private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	
+	public static String getFormattedDate(Date date) {
+		return dateFormat.format(date);
+	}
+	
 	public static String beforeBody(String title, String css) {
 		return "<html>\n<head>\n<title>" + title
 				+ "</title>\n<link rel=\"stylesheet\" href=\"" + css

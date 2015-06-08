@@ -75,8 +75,7 @@ public class RegServlet extends HttpServlet {
 				out.println(Tools.makeHeader(null));
 				out.println("<h2>Kedves " + user.getUsername()
 						+ "!\n Regisztrációját sikeresen aktiválta! </h2>");
-				out.println("<h2>" + Tools.linkTag("Hello", "Vissza")
-						+ "</h2>");
+				out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>");
 				out.println(Tools.afterBody());
 			} else {
 				session.setAttribute("reset", "Reg.jsp");
@@ -109,6 +108,8 @@ public class RegServlet extends HttpServlet {
 		AccountDao dao = new AccountDao(em);
 		PrintWriter out = response.getWriter();
 		pattern = Pattern.compile(EMAIL_PATTERN);
+		String errorString = "";
+		Boolean errorBoolean = false;
 
 		String username = Tools
 				.stripHtmlRegex(request.getParameter("username"));
@@ -120,17 +121,32 @@ public class RegServlet extends HttpServlet {
 		matcher = pattern.matcher(email);
 		session.setAttribute("reset", "Reg.jsp");
 		if (!password.equals(password2)) {
-			session.setAttribute("error", "A két jelszó nem egyezik meg!");
-			response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
-		} else if (dao.usernameIsUsed(username)) {
-			session.setAttribute("error", "Foglalt felhasználónév!");
-			response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
-		} else if (!matcher.matches()) {
-			session.setAttribute("error", "Rossz e-mail cím!");
-			response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
+			errorString += "\nA két jelszó nem eggyezik!";
+			session.setAttribute("error", errorString);
+			errorBoolean = true;
 
 		}
+		if (dao.usernameIsUsed(username)) {
+			errorString += "\nFoglalt felhasználónév!";
+			session.setAttribute("error", errorString);
+			errorBoolean = true;
 
+		}
+		if (!matcher.matches()) {
+			errorString += "\nRossz e-mail cím!";
+			session.setAttribute("error", errorString);
+			errorBoolean = true;
+
+		}
+		if (dao.emailIsUsed(email)) {
+			errorString += "\nFoglalt Email cím!";
+			session.setAttribute("error", errorString);
+			errorBoolean = true;
+
+		}
+		if (errorBoolean == true) {
+			response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
+		}
 		else {
 			Account user = new Account();
 			Email mail = new Email();
@@ -148,15 +164,16 @@ public class RegServlet extends HttpServlet {
 
 			randomS.nextString();
 			try {
-				mail.sendMail("Gyenge szerver regisztráció", "Az alábbi linken aktiválhatja regisztrációját:\n http://"+request.getServerName()+":8080/RegServlet?id="
-						+ user.getId() + "&checkText=" + randomText,
-						user.getEmail());
+				mail.sendMail("Gyenge szerver regisztráció",
+						"Az alábbi linken aktiválhatja regisztrációját:\n http://"
+								+ request.getServerName()
+								+ ":8080/RegServlet?id=" + user.getId()
+								+ "&checkText=" + randomText, user.getEmail());
 				out.println(Tools.beforeBody("Regisztráció", "style.css"));
 				out.println(Tools.makeHeader(null));
-				
+
 				out.println("<h2>Sikeres regisztráció! A megadott e-mail-re küldtünk egy linket amellyel aktiválhatja a regisztrációját.</h2>");
-				out.println("<h2>" + Tools.linkTag("Hello", "Vissza")
-						+ "</h2>");
+				out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>");
 				out.println(Tools.afterBody());
 
 			} catch (Exception e) {

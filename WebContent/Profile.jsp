@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="org.jakabhegy.pojo.Article"%>
 <%@page import="java.util.List"%>
 <%@page import="org.jakabhegy.dao.ArticleDao"%>
@@ -12,30 +13,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
-	int user_id = Integer.parseInt(request.getParameter("id").toString());
-	EntityManagerFactory factory = Persistence.createEntityManagerFactory("messages");
+	EntityManagerFactory factory = Persistence
+			.createEntityManagerFactory("messages");
 	EntityManager em = factory.createEntityManager();
 	AccountDao accountDao = new AccountDao(em);
-	ArticleDao articleDao=new ArticleDao(em);
-	Account user = accountDao.listOne(user_id);
-	if (user == null) {
+	ArticleDao articleDao = new ArticleDao(em);
+	Account user = null;
+	List<Article> articles = null;
+	try {
+
+		int user_id = Integer.parseInt(Tools.stripHtmlRegex(request
+				.getParameter("id").toString()));
+
+		user = accountDao.listOne(user_id);
+
+		articles = articleDao.listByAuthor(user);
+
+	} catch (Exception ex) {
+		session.setAttribute("reset", "ShowArticles.jsp");
 		session.setAttribute("error", "Nincs ilyen felhasználó!");
 		response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
 	}
-	List<Article> articles=articleDao.listByAuthor(user);
 %>
-<%=Tools.beforeBody(user.getUsername(), "style.css") %>
-	<%=Tools.makeHeader(user)%>
-	<div class=profile>
-		<h1><%= user.getUsername() %></h1>
-		<%=Tools.imgTag(user.getImgPath())%>
-	<% if(!articles.isEmpty()) {%>
-	<%="<h2>" + user.getUsername() + " cikkei:</h2>"%>
-	<% } %>
+<%=Tools.beforeBody(user.getUsername(), "style.css")%>
+<%=Tools.makeHeader(user)%>
+<div class=profile>
+	<h1><%=user.getUsername()%></h1>
+	<%=Tools.imgTag(user.getImgPath())%>
 	<%
-	int i=1;
-	for(Article article : articles){ %>
-		<%= "<h2>#"+(i++)+" "+Tools.linkTag(article.getArticleLink(), article.getTitle())+"</h2>" %>
-		<% } %>
-	</div>
-<%=Tools.afterBody() %>
+		if (!articles.isEmpty()) {
+	%>
+	<%="<h2>" + user.getUsername() + " cikkei:</h2>"%>
+
+	<%
+		int i = 1;
+			for (Article article : articles) {
+	%>
+	<%="<h2>#"
+							+ (i++)
+							+ " "
+							+ Tools.linkTag(article.getArticleLink(),
+									article.getTitle()) + "</h2>"%>
+	<%
+		}
+	%>
+	<%
+		}
+	%>
+</div>
+<%=Tools.afterBody()%>

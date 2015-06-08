@@ -96,4 +96,13 @@ public class AccountDao {
 		return count>0;
 	}
 
+	public boolean emailIsUsed(String email) {
+		String sqlCommand = String.format(
+				"select count(s.email) from Account s where s.email = '%s'", email); //$NON-NLS-1$
+		Query q = entityManager.createQuery(sqlCommand);
+		long count=(long) q.getSingleResult();
+		System.out.println(count+" db "+email);
+		return count>0;
+	}
+
 }
