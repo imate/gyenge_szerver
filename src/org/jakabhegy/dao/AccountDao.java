@@ -59,8 +59,6 @@ public class AccountDao {
 		return dataList;
 	}
 	
-
-	
 	public Account listOne(int id) {
 
 		//	String sqlCommand = "select s from Student s where s.eha = '" + eha + "'"; //$NON-NLS-1$

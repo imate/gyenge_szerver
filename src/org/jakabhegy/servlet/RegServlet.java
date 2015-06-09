@@ -3,7 +3,6 @@ package org.jakabhegy.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,9 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.jakabhegy.dao.AccountDao;
-import org.jakabhegy.dao.ArticleDao;
 import org.jakabhegy.pojo.Account;
-import org.jakabhegy.pojo.Article;
 import org.jakabhegy.tools.Email;
 import org.jakabhegy.tools.RandomString;
 import org.jakabhegy.tools.Tools;

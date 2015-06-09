@@ -10,7 +10,26 @@
 		<properties>
 
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby:nagyonDb;create=true" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:nagyonDb2;create=true" />
+			<property name="javax.persistence.jdbc.user" value="test" />
+			<property name="javax.persistence.jdbc.password" value="test" />
+
+			<!-- EclipseLink should create the database schema automatically -->
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode"
+				value="database" />
+		</properties>
+
+	</persistence-unit>
+	
+	<persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
+		<class>org.jakabhegy.pojo.Message</class>
+		<class>org.jakabhegy.pojo.Article</class>
+		<class>org.jakabhegy.pojo.Account</class>
+		<properties>
+
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:testDb;create=true" />
 			<property name="javax.persistence.jdbc.user" value="test" />
 			<property name="javax.persistence.jdbc.password" value="test" />
 
