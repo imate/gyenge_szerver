@@ -25,8 +25,10 @@
 		<input type="file" name="file" accept=".jpg" /> <input type="submit"
 			value="upload" />
 	</form>
-	<h3>Email: <%=user.getEmail()%></h3>
+	<h3>Email: <%=user.getEmail()  %></h3>
+	<h3><%=Tools.linkTag("NewEmail.jsp", "Email cím megváltoztatása") %></h3>
 	<h3>Regisztráció dátuma: <%= Tools.getFormattedDate(user.getRegDate()) %></h3>
+	<h3> <%=Tools.linkTag("NewPassword.jsp", "Jelszó megváltoztatása")  %></h3>
 	<h3><%=Tools.linkTag("ShowArticles.jsp?author_id=" + user.getId(),
 			"cikkeim") %></h3>
 	

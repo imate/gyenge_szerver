@@ -3,14 +3,26 @@ package org.jakabhegy.tools;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jakabhegy.pojo.Account;
 
 public class Tools {
 	private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private static Pattern pattern;
+	private static Matcher matcher;
 	
 	public static String getFormattedDate(Date date) {
 		return dateFormat.format(date);
+	}
+	public static boolean checkEmail(String email){
+		pattern = Pattern.compile(EMAIL_PATTERN);
+		matcher = pattern.matcher(email);
+		
+		return matcher.matches();
 	}
 	
 	public static String beforeBody(String title, String css) {

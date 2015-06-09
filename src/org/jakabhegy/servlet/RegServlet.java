@@ -34,10 +34,10 @@ public class RegServlet extends HttpServlet {
 	private static final String PERSISTENCE_UNIT_NAME = "messages"; //$NON-NLS-1$
 	private static EntityManagerFactory factory;
 	private EntityManager em;
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+	/*private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private Pattern pattern;
-	private Matcher matcher;
+	private Matcher matcher;*/
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -107,7 +107,7 @@ public class RegServlet extends HttpServlet {
 		em = factory.createEntityManager();
 		AccountDao dao = new AccountDao(em);
 		PrintWriter out = response.getWriter();
-		pattern = Pattern.compile(EMAIL_PATTERN);
+	//	pattern = Pattern.compile(EMAIL_PATTERN);
 		String errorString = "";
 		Boolean errorBoolean = false;
 
@@ -118,7 +118,7 @@ public class RegServlet extends HttpServlet {
 		String password2 = Tools.stripHtmlRegex(request
 				.getParameter("password2"));
 		String email = Tools.stripHtmlRegex(request.getParameter("email"));
-		matcher = pattern.matcher(email);
+	//	matcher = pattern.matcher(email);
 		session.setAttribute("reset", "Reg.jsp");
 		if (!password.equals(password2)) {
 			errorString += "\nA két jelszó nem eggyezik!";
@@ -132,7 +132,7 @@ public class RegServlet extends HttpServlet {
 			errorBoolean = true;
 
 		}
-		if (!matcher.matches()) {
+		if (!Tools.checkEmail(email)) {
 			errorString += "\nRossz e-mail cím!";
 			session.setAttribute("error", errorString);
 			errorBoolean = true;
@@ -161,8 +161,7 @@ public class RegServlet extends HttpServlet {
 			dao.create(user);
 			// session.setAttribute("user", user);
 			// response.sendRedirect(response.encodeRedirectURL("Hello"));
-
-			randomS.nextString();
+			//randomS.nextString();
 			try {
 				mail.sendMail("Gyenge szerver regisztráció",
 						"Az alábbi linken aktiválhatja regisztrációját:\n http://"
