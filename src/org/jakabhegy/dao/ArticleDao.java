@@ -51,10 +51,10 @@ public class ArticleDao {
 		}
 	}
 
-	public List<Article> listAll(String tableName) {
+	public List<Article> listAll() {
 
 		Query query = this.entityManager
-				.createQuery("Select t from " + tableName + " t"); //$NON-NLS-1$ //$NON-NLS-2$
+				.createQuery("Select t from Article t"); //$NON-NLS-1$ //$NON-NLS-2$
 		@SuppressWarnings("unchecked")
 		List<Article> dataList = query.getResultList();
 

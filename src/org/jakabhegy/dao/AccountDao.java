@@ -58,7 +58,7 @@ public class AccountDao {
 
 		return dataList;
 	}
-	
+
 	public Account listOne(int id) {
 
 		//	String sqlCommand = "select s from Student s where s.eha = '" + eha + "'"; //$NON-NLS-1$
@@ -86,21 +86,19 @@ public class AccountDao {
 	}
 
 	public boolean usernameIsUsed(String username) {
-		String sqlCommand = String.format(
-				"select count(s.username) from Account s where s.username = '%s'", username); //$NON-NLS-1$
+		String sqlCommand = String
+				.format("select count(s.username) from Account s where s.username = '%s'", username); //$NON-NLS-1$
 		Query q = entityManager.createQuery(sqlCommand);
-		long count=(long) q.getSingleResult();
-		System.out.println(count+" db "+username);
-		return count>0;
+		long count = (long) q.getSingleResult();
+		return count > 0;
 	}
 
 	public boolean emailIsUsed(String email) {
-		String sqlCommand = String.format(
-				"select count(s.email) from Account s where s.email = '%s'", email); //$NON-NLS-1$
+		String sqlCommand = String
+				.format("select count(s.email) from Account s where s.email = '%s'", email); //$NON-NLS-1$
 		Query q = entityManager.createQuery(sqlCommand);
-		long count=(long) q.getSingleResult();
-		System.out.println(count+" db "+email);
-		return count>0;
+		long count = (long) q.getSingleResult();
+		return count > 0;
 	}
 
 }
