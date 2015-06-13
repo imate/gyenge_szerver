@@ -40,7 +40,7 @@ public class Tools {
 	}
 
 	private static String makeFooter() {
-		String footer = "<footer>Az oldalt az Alsópáhoki Gyenge Adatközpont<sup>TM</sup> üzemelteti.</br>email: primaszerver@gmail.com</footer>";
+		String footer = "<footer>Az oldalt az Alsópáhoki Gyenge Adatközpont<sup>TM</sup> üzemelteti.</br>email: primaszerver@gmail.com</br>"+linkTag("felhasznalasi_feltetelek.html", "felhasználási feltételek")+"</footer>";
 		return footer;
 	}
 
@@ -79,5 +79,9 @@ public class Tools {
 					+ linkTag("LogoutServlet", "kijelentkezés");
 		}
 		return "<header><nav>" + result + "</nav></header>";
+	}
+	
+	public static String termsAndConditions(){
+		return "A blogon megjelenõ bejegyzésekhez a hozzászólni kívánó Facebook profilján keresztül történõ bejelentkezés után bárki hozzászólhat. Az üzemeltetõ fenntartja a jogot a hozzászólások elõzetes értesítés, figyelmeztetés és indokolás nélküli törlésére.";
 	}
 }

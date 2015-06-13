@@ -16,7 +16,8 @@
 			<input type="password" name="password" placeholder="Jelszó" required />
 			<input type="password" name="password2" placeholder="Jelszó ismét" required />
 			<input type="text" name="email" placeholder="Email" required />
-			<input type="submit" value="OK" />
+			<input type="checkbox" id="checkme" required/>elfogadom a <%= Tools.linkTag("felhasznalasi_feltetelek.html", "felhasználási feltételek") %>et
+			<input type="submit" name="reg" id="reg" value="Regisztráció" />
 		</form>
 		<%out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>"); %>
 	</div>

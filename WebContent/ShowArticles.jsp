@@ -41,7 +41,7 @@
 	} else if(author){
 		articleList=articleDao.listByAuthor(accountDao.listOne(author_id));
 	}else{
-		articleList = articleDao.listAll("Article");
+		articleList = articleDao.listAll();
 	}
 %><ul>
 	<% 
