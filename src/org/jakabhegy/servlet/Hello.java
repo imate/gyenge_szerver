@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.jakabhegy.pojo.Account;
-import org.jakabhegy.tools.RandomString;
 import org.jakabhegy.tools.Tools;
 
 @WebServlet("/Hello")

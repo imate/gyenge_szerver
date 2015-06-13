@@ -1,17 +1,19 @@
 package org.jakabhegy.pojo;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Account {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	private String username;
 	private String password;
@@ -20,6 +22,8 @@ public class Account {
 	private String email;
 	private boolean ellenorzott;
 	private String checkText;
+	@OneToMany(mappedBy = "author")
+	private List<Article> articles;
 
 	public Account() {
 		super();
@@ -96,15 +100,30 @@ public class Account {
 	public void setImgName(String imgName) {
 		this.imgName = imgName;
 	}
-	
+
 	public String getProfileLink() {
 		return "Profile.jsp?id=" + getId();
+	}
+
+	public List<Article> getArticles() {
+		return new ArrayList<>(this.articles);
+	}
+
+	public void addArticle(Article article) {
+		this.articles.add(article);
+		if (article.getAuthor() != this) {
+			article.setAuthor(this);
+		}
 	}
 
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", username=" + username + ", password="
 				+ password + ", regDate=" + regDate + "]";
+	}
+
+	public void removeArticle(Article article) {
+		this.articles.remove(article);
 	}
 
 }

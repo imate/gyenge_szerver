@@ -3,8 +3,6 @@ package org.jakabhegy.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,8 +59,7 @@ public class RegServlet extends HttpServlet {
 		try {
 			int id = Integer.parseInt(Tools.stripHtmlRegex(request
 					.getParameter("id")));
-			String text = Tools.stripHtmlRegex(request
-					.getParameter("checkText"));
+			String text = Tools.stripHtmlRegex(checkText);
 			Account user = dao.listOne(id);
 
 			if (user.getCheckText().equals(text)) {

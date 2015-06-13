@@ -1,8 +1,8 @@
 package org.jakabhegy.pojo;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,13 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.jakabhegy.tools.Tools;
 
 @Entity
 public class Article {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	private String title;
 	@Column(length = 2000)
@@ -26,8 +27,12 @@ public class Article {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "author_id")
 	private Account author;
+	@OneToMany(mappedBy = "article")
+	private List<Message> messages;
 	private Date date;
-	//private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+	// private DateFormat dateFormat = new
+	// SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	public Article() {
 		super();
@@ -68,6 +73,9 @@ public class Article {
 
 	public void setAuthor(Account author) {
 		this.author = author;
+		if (!author.getArticles().contains(this)) {
+			author.addArticle(this);
+		}
 	}
 
 	public Date getDate() {
@@ -78,10 +86,23 @@ public class Article {
 		this.date = date;
 	}
 
-	
-
 	public String getArticleLink() {
 		return "ShowArticle?id=" + getId();
+	}
+
+	public List<Message> getMessages() {
+		return new ArrayList<>(this.messages);
+	}
+
+	public void addMessage(Message message) {
+		this.messages.add(message);
+		if (message.getArticle() != this) {
+			message.setArticle(this);
+		}
+	}
+
+	public String getMessageCount() {
+		return this.messages.size() + " hozzászólás";
 	}
 
 	@Override
@@ -90,5 +111,10 @@ public class Article {
 				+ ", creator=" + getAuthorName() + ", date="
 				+ Tools.getFormattedDate(date) + "]";
 	}
+
+	public void deleteAuthor() {
+		this.author.removeArticle(this);
+		this.author=null;
+}
 
 }

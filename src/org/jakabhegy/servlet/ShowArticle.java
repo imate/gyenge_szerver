@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.jakabhegy.dao.ArticleDao;
-import org.jakabhegy.dao.MessageDao;
 import org.jakabhegy.pojo.Account;
 import org.jakabhegy.pojo.Article;
 import org.jakabhegy.pojo.Message;
@@ -57,11 +56,12 @@ public class ShowArticle extends HttpServlet {
 				.createEntityManagerFactory("messages");
 		EntityManager em = factory.createEntityManager();
 		ArticleDao daoArticle = new ArticleDao(em);
+		Article article=null;
 
 		try {
 			id = Integer.parseInt(Tools.stripHtmlRegex(request
 					.getParameter("id")));
-			Article article = daoArticle.listOne(id);
+			article = daoArticle.listOne(id);
 			out.println("<ul>");
 			out.println("<article class=\"item\">");
 			out.println("<h1>" + article.getTitle() + "</h1>");
@@ -79,9 +79,7 @@ public class ShowArticle extends HttpServlet {
 
 		}
 
-		MessageDao messageDao = new MessageDao(em);
-		ArticleDao articleDao=new ArticleDao(em);
-		List<Message> messageList = messageDao.listByArticle(articleDao.listOne(id));
+		List<Message> messageList = article.getMessages();
 
 		out.println("<ul>");
 		out.println("<li>");

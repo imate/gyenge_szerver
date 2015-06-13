@@ -3,7 +3,6 @@ package org.jakabhegy.servlet;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,13 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.html.HTML;
 
 import org.jakabhegy.dao.ArticleDao;
-import org.jakabhegy.dao.MessageDao;
 import org.jakabhegy.pojo.Account;
 import org.jakabhegy.pojo.Article;
-import org.jakabhegy.pojo.Message;
 import org.jakabhegy.tools.Tools;
 
 /**

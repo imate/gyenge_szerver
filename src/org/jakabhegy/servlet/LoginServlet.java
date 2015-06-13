@@ -1,7 +1,6 @@
 package org.jakabhegy.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

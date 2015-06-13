@@ -17,7 +17,7 @@
 			.createEntityManagerFactory("messages");
 	EntityManager em = factory.createEntityManager();
 	AccountDao accountDao = new AccountDao(em);
-	ArticleDao articleDao = new ArticleDao(em);
+	ArticleDao articleDao=new ArticleDao(em);
 	Account user = null;
 	List<Article> articles = null;
 	try {
@@ -36,7 +36,7 @@
 	}
 %>
 <%=Tools.beforeBody(user.getUsername(), "style.css")%>
-<%=Tools.makeHeader(user)%>
+<%=Tools.makeHeader((Account)session.getAttribute("user"))%>
 <div class=profile>
 	<h1><%=user.getUsername()%></h1>
 	<%=Tools.imgTag(user.getImgPath())%>

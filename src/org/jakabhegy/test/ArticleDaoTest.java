@@ -68,6 +68,7 @@ public class ArticleDaoTest {
 		article.setAuthor(author);
 		articleDao.create(article);
 		assertEquals(1, articleDao.listByAuthor(author).size());
+		article.deleteAuthor();
 		articleDao.delete(article);
 		accountDao.delete(author);
 	}

@@ -1,6 +1,5 @@
 package org.jakabhegy.pojo;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +16,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Message {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "article_id")
@@ -80,6 +79,9 @@ public class Message {
 
 	public void setArticle(Article article) {
 		this.article = article;
+		if (!article.getMessages().contains(this)) {
+			article.addMessage(this);
+		}
 	}
 
 	@Override

@@ -31,16 +31,16 @@
 
 <%
 	EntityManagerFactory factory = Persistence
-			.createEntityManagerFactory("messages");
+	.createEntityManagerFactory("messages");
 	EntityManager em = factory.createEntityManager();
 	ArticleDao articleDao = new ArticleDao(em);
 	AccountDao accountDao = new AccountDao(em);
 	List<Article> articleList;
 	if (search) {
 		articleList = articleDao.searchInText(text_search);
-	} else if(author){
-		articleList=articleDao.listByAuthor(accountDao.listOne(author_id));
-	}else{
+	} else if (author) {
+		articleList = articleDao.listByAuthor(accountDao.listOne(author_id));
+	} else {
 		articleList = articleDao.listAll();
 	}
 %><ul>
@@ -54,7 +54,7 @@
 			<% out.println("#"+(i++)+" "+Tools.linkTag("ShowArticle?id="+article.getId(), article.getTitle()));%>
 		</h1>
 		<!-- <h2><%= article.getText() %></h2> -->
-		<h3><%= Tools.linkTag(article.getAuthor().getProfileLink(), article.getAuthorName())+", "+Tools.getFormattedDate(article.getDate()) %></h3>
+		<h3><%= Tools.linkTag(article.getAuthor().getProfileLink(), article.getAuthorName())+" | "+Tools.getFormattedDate(article.getDate())+" | "+article.getMessageCount() %></h3>
 		</article></li>
 
 
