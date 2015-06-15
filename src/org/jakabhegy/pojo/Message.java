@@ -89,5 +89,7 @@ public class Message {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		return getAuthorName() + ":\n" + text + "\n" + dateFormat.format(date);
 	}
+	
+	
 
 }

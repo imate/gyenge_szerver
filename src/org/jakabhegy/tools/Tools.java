@@ -9,22 +9,24 @@ import java.util.regex.Pattern;
 import org.jakabhegy.pojo.Account;
 
 public class Tools {
-	private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private static DateFormat dateFormat = new SimpleDateFormat(
+			"yyyy/MM/dd HH:mm:ss");
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static Pattern pattern;
 	private static Matcher matcher;
-	
+
 	public static String getFormattedDate(Date date) {
 		return dateFormat.format(date);
 	}
-	public static boolean checkEmail(String email){
+
+	public static boolean checkEmail(String email) {
 		pattern = Pattern.compile(EMAIL_PATTERN);
 		matcher = pattern.matcher(email);
-		
+
 		return matcher.matches();
 	}
-	
+
 	public static String beforeBody(String title, String css) {
 		return "<html>\n<head>\n<title>" + title
 				+ "</title>\n<link rel=\"stylesheet\" href=\"" + css
@@ -40,7 +42,9 @@ public class Tools {
 	}
 
 	private static String makeFooter() {
-		String footer = "<footer>Az oldalt az Alsópáhoki Gyenge Adatközpont<sup>TM</sup> üzemelteti.</br>email: primaszerver@gmail.com</br>"+linkTag("felhasznalasi_feltetelek.html", "felhasználási feltételek")+"</footer>";
+		String footer = "<footer>Az oldalt az Alsópáhoki Gyenge Adatközpont<sup>TM</sup> üzemelteti.</br>email: primaszerver@gmail.com</br>"
+				+ linkTag("felhasznalasi_feltetelek.html",
+						"felhasználási feltételek") + "</footer>";
 		return footer;
 	}
 
@@ -71,17 +75,17 @@ public class Tools {
 		} else {
 
 			result += imgTag(user.getImgPath())
-					+ linkTag("MyProfile.jsp", user.getUsername())
+					+ linkTag("Profile.jsp?id=" + user.getId(), user.getUsername())
 					+ linkTag("NewArticle.jsp", "új cikk")
 					+ linkTag("ShowArticles.jsp", "cikkek")
-					+ linkTag("ShowArticles.jsp?author_id=" + user.getId(),
-							"cikkeim")
+					+ linkTag("ShowArticles.jsp?author_id=" + user.getId(), "cikkeim")
+					+ linkTag("MyProfile.jsp", "profil beállítások")
 					+ linkTag("LogoutServlet", "kijelentkezés");
 		}
 		return "<header><nav>" + result + "</nav></header>";
 	}
-	
-	public static String termsAndConditions(){
+
+	public static String termsAndConditions() {
 		return "A blogon megjelenõ bejegyzésekhez a hozzászólni kívánó Facebook profilján keresztül történõ bejelentkezés után bárki hozzászólhat. Az üzemeltetõ fenntartja a jogot a hozzászólások elõzetes értesítés, figyelmeztetés és indokolás nélküli törlésére.";
 	}
 }

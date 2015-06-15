@@ -33,36 +33,21 @@ public class Hello extends HttpServlet {
 		out.println(Tools.beforeBody("Gyenge Szerver", "style.css"));
 
 		out.println(Tools.makeHeader(user));
-		
-//		out.println("<header>");
-//		out.println("<h1>Üdvözöllek a jakabhegyi gyenge szerveren!</h1>");
-//		out.println("</header>");
 
 		out.println("<article class=\"hello_article\">");	
 		out.println("<nav>");
 
-		// out.println("<h2>"+ Tools.linkTag("Message.jsp",
-		// "Küldj egy óriási üzenetet!") + "</h2>");
 		if (loggedIn) {
-			out.println("<h2>" + user.getUsername()
-					+ " néven vagy bejelentkezve!</h2>");
-			out.println("<h2>"
-					+ Tools.linkTag("NewArticle.jsp",
-							"Írj nekem egy nagy cikket!") + "</h2>");
-			out.println("<h2>"
-					+ Tools.linkTag("LogoutServlet", "Kijelentkezés") + "</h2>");
+			out.println("<h2>" + user.getUsername() + " néven vagy bejelentkezve!</h2>");
+			out.println("<h2>" + Tools.linkTag("NewArticle.jsp", "Írj nekem egy nagy cikket!") + "</h2>");
+			out.println("<h2>" + Tools.linkTag("LogoutServlet", "Kijelentkezés") + "</h2>");
 		} else {
-			out.println("<h2>" + Tools.linkTag("Login.jsp", "Jelentkezz be!")
-					+ "</h2>");
-			out.println("<h2>" + Tools.linkTag("Reg.jsp", "Vagy regisztrálj!")
-					+ "</h2>");
+			out.println("<h2>" + Tools.linkTag("Login.jsp", "Jelentkezz be!") + "</h2>");
+			out.println("<h2>" + Tools.linkTag("Reg.jsp", "Vagy regisztrálj!") + "</h2>");
 		}
-		out.println("<h1>" + Tools.linkTag("ShowArticles.jsp", "Cikkek")
-				+ "</h1>");
+		out.println("<h1>" + Tools.linkTag("ShowArticles.jsp", "Cikkek") + "</h1>");
 		out.println("</nav>");
-		out.println("<h2>a te ip-címed: " + request.getRemoteAddr() + "</h2>");
-		out.println(Tools.imgTag("img/prima.jpg")
-				+ Tools.imgTag("img/tama.jpg"));
+		out.println(Tools.imgTag("img/prima.jpg")+ Tools.imgTag("img/tama.jpg"));
 		out.println("</article>");
 		out.println(Tools.audioTag("heman.ogg", "audio/ogg"));
 		out.println(Tools.afterBody());

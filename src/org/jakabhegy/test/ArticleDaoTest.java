@@ -2,6 +2,8 @@ package org.jakabhegy.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -42,10 +44,10 @@ public class ArticleDaoTest {
 
 	@Test
 	public void testListAll() {
-		assertEquals(1, articleDao.listAll().size());
+		assertEquals(Arrays.asList(testArticle), articleDao.listAll());
 		Article article2 = new Article();
 		articleDao.create(article2);
-		assertEquals(2, articleDao.listAll().size());
+		assertEquals(Arrays.asList(testArticle,article2), articleDao.listAll());
 		articleDao.delete(article2);
 	}
 
@@ -54,9 +56,19 @@ public class ArticleDaoTest {
 		Article article = new Article();
 		article.setText("egy kis alma");
 		articleDao.create(article);
-		assertEquals(1, articleDao.searchInText("alma").size());
-		assertEquals(0, articleDao.searchInText("szilva").size());
+		assertEquals(Arrays.asList(article), articleDao.searchInText("alma"));
+		assertEquals(Arrays.asList(), articleDao.searchInText("szilva"));
 		articleDao.delete(article);
+	}
+
+	@Test
+	public void testDelete() {
+		Article article = new Article();
+		assertEquals(Arrays.asList(testArticle),articleDao.listAll());
+		articleDao.create(article);
+		assertEquals(Arrays.asList(testArticle,article),articleDao.listAll());
+		articleDao.delete(article);
+		assertEquals(Arrays.asList(testArticle),articleDao.listAll());
 	}
 
 	@Test
@@ -68,6 +80,7 @@ public class ArticleDaoTest {
 		article.setAuthor(author);
 		articleDao.create(article);
 		assertEquals(1, articleDao.listByAuthor(author).size());
+		assertEquals(author, articleDao.listByAuthor(author).get(0).getAuthor());
 		article.deleteAuthor();
 		articleDao.delete(article);
 		accountDao.delete(author);

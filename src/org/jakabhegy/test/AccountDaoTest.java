@@ -2,6 +2,8 @@ package org.jakabhegy.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -42,10 +44,10 @@ public class AccountDaoTest {
 
 	@Test
 	public void testListAll() {
-		assertEquals(1, accountDao.listAll("Account").size());
+		assertEquals(Arrays.asList(testUser), accountDao.listAll("Account"));
 		Account user2=new Account();
 		accountDao.create(user2);
-		assertEquals(2, accountDao.listAll("Account").size());
+		assertEquals(Arrays.asList(testUser,user2), accountDao.listAll("Account"));
 		accountDao.delete(user2);
 	}
 
