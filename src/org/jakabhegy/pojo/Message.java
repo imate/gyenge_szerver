@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Message {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "article_id")

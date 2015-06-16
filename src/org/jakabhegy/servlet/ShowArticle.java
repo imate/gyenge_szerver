@@ -42,6 +42,7 @@ public class ShowArticle extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		response.setContentType("text/html; charset=UTF-8");
 		Account user = (Account) session.getAttribute("user");
 		boolean loggedIn = session.getAttribute("user") != null;
 		if (loggedIn)
@@ -68,8 +69,6 @@ public class ShowArticle extends HttpServlet {
 			out.println("<h2>" + article.getText() + "</h2>");
 			out.println("<h3>" + Tools.linkTag(article.getAuthor().getProfileLink(), article.getAuthorName()) + ", "
 					+ Tools.getFormattedDate(article.getDate()) + "</h3>");
-			out.println("<h2>" + Tools.linkTag("ShowArticles.jsp", "Vissza")
-					+ "</h2>");
 			out.println("</article>");
 
 		} catch (Exception ex) {
@@ -86,7 +85,7 @@ public class ShowArticle extends HttpServlet {
 		if (messageList.isEmpty()) {
 			out.println("<h2>Nincs még hozzászólás.</h2>");
 		} else {
-			out.println("<h2>Hozzászólások:</h2>");
+			out.println("<h2>Hozzászólások sejj:</h2>");
 		}
 		out.println("</li>");
 

@@ -1,9 +1,9 @@
 <%@page import="org.jakabhegy.pojo.Account"%>
 <%@page import="org.jakabhegy.tools.Tools"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%=Tools.beforeBody("Új jelszó", "style.css") %>
+<%=Tools.beforeBody("Ãšj jelszÃ³", "style.css") %>
 	
 	<%Account user=null;
 	if (session.getAttribute("user") != null) {
@@ -19,10 +19,10 @@
 	<div class="form_cucc">
 	<form action="NewPasswordServlet" method="post" name="newPasswordForm"
 		accept-charset="UTF-8">
-		<input type="password" name="currentPassword" placeholder="Jelenlegi jelszó" required />
-		<input type="password" name="newPassword1" placeholder="Új jelszó" required />
-		<input type="password" name="newPassword2" placeholder="Új jelszó ismét" required />
-		<input type="submit" value="Küldés" />
+		<input type="password" name="currentPassword" placeholder="Jelenlegi jelszÃ³" required />
+		<input type="password" name="newPassword1" placeholder="Ãšj jelszÃ³" required />
+		<input type="password" name="newPassword2" placeholder="Ãšj jelszÃ³ ismÃ©t" required />
+		<input type="submit" value="KÃ¼ldÃ©s" />
 		<%
 			out.println("<h2>" + Tools.linkTag("MyProfile.jsp", "Vissza")
 					+ "</h2>");

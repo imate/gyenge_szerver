@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Account {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String username;
 	private String password;

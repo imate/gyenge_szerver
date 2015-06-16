@@ -31,8 +31,8 @@ public class Tools {
 		return "<html>\n<head>\n<title>" + title
 				+ "</title>\n<link rel=\"stylesheet\" href=\"" + css
 				+ "\" type=\"text/css\"></link>\n"
+				//+ "<meta charset=\"UTF-8\">"
 				+ "<link rel=\"shortcut icon\" href=\"img/favicon.ico\" />"
-				// +"<meta charset=\"UTF-8\">"
 				+ "</head>\n<body>" + "<div id=\"wrapper\">" + "<h6>"
 				+ linkTag("Hello", "Gyenge szerver") + "</h6>";
 	}
@@ -67,20 +67,23 @@ public class Tools {
 	}
 
 	public static String makeHeader(Account user) {
+		String search = "<form method=\"post\" action=\"ShowArticles.jsp\" accept-charset=\"utf-8\"><input type=\"text\" name=\"text_search\" required /> <input type=\"submit\" value=\"keresés\" /></form>";
 		String result = "";
 		if (user == null) {
 			result += linkTag("Login.jsp", "bejelentkezés")
 					+ linkTag("Reg.jsp", "regisztráció")
-					+ linkTag("ShowArticles.jsp", "cikkek");
+					+ linkTag("ShowArticles.jsp", "cikkek") + search;
 		} else {
 
 			result += imgTag(user.getImgPath())
-					+ linkTag("Profile.jsp?id=" + user.getId(), user.getUsername())
+					+ linkTag("Profile.jsp?id=" + user.getId(),
+							user.getUsername())
 					+ linkTag("NewArticle.jsp", "új cikk")
 					+ linkTag("ShowArticles.jsp", "cikkek")
-					+ linkTag("ShowArticles.jsp?author_id=" + user.getId(), "cikkeim")
-					+ linkTag("MyProfile.jsp", "profil beállítások")
-					+ linkTag("LogoutServlet", "kijelentkezés");
+					+ linkTag("ShowArticles.jsp?author_id=" + user.getId(),
+							"cikkeim")
+					+ linkTag("MyProfile.jsp", "beállítások")
+					+ linkTag("LogoutServlet", "kijelentkezés") + search;
 		}
 		return "<header><nav>" + result + "</nav></header>";
 	}

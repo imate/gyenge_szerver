@@ -7,8 +7,8 @@
 <%@page import="javax.persistence.EntityManager"%>
 <%@page import="javax.persistence.Persistence"%>
 <%@page import="javax.persistence.EntityManagerFactory"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%=Tools.beforeBody("Cikkek", "style.css") %>
 
@@ -26,7 +26,7 @@
 <form method="post" action="ShowArticles.jsp" class="form_cucc"
 	accept-charset="utf-8">
 	<input type="text" name="text_search" required /> <input type="submit"
-		value="keres�s" />
+		value="keresés" />
 </form>
 
 <%
@@ -61,5 +61,5 @@
 
 	<% }%>
 </ul>
-<%out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>"); %>
+<%out.println("<h2 style='text-align: center;'>" + Tools.linkTag("Hello", "vissza a főoldalra") + "</h2>"); %>
 <%= Tools.afterBody() %>

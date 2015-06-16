@@ -1,9 +1,9 @@
 <%@page import="org.jakabhegy.tools.Tools"%>
 <%@page import="org.jakabhegy.pojo.Account"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%=Tools.beforeBody("Regisztráció", "style.css") %>
+<%=Tools.beforeBody("RegisztrÃ¡ciÃ³", "style.css") %>
 	
 	<%= Tools.makeHeader((Account)session.getAttribute("user")) %>
 	
@@ -12,12 +12,12 @@
 		<form action="RegServlet" method="post" name="messageForm"
 			accept-charset="UTF-8">
 
-			<input type="text" name="username" placeholder="Név" required />
-			<input type="password" name="password" placeholder="Jelszó" required />
-			<input type="password" name="password2" placeholder="Jelszó ismét" required />
+			<input type="text" name="username" placeholder="NÃ©v" required />
+			<input type="password" name="password" placeholder="JelszÃ³" required />
+			<input type="password" name="password2" placeholder="JelszÃ³ ismÃ©t" required />
 			<input type="text" name="email" placeholder="Email" required />
-			<input type="checkbox" id="checkme" required/>elfogadom a <%= Tools.linkTag("felhasznalasi_feltetelek.html", "felhasználási feltételek") %>et
-			<input type="submit" name="reg" id="reg" value="Regisztráció" />
+			<input type="checkbox" id="checkme" required/>elfogadom a <%= Tools.linkTag("felhasznalasi_feltetelek.html", "felhasznÃ¡lÃ¡si feltÃ©telek") %>et
+			<input type="submit" name="reg" id="reg" value="RegisztrÃ¡ciÃ³" />
 		</form>
 		<%out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>"); %>
 	</div>

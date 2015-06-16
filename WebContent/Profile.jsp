@@ -8,8 +8,8 @@
 <%@page import="javax.persistence.EntityManagerFactory"%>
 <%@page import="org.jakabhegy.pojo.Account"%>
 <%@page import="org.jakabhegy.tools.Tools"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
@@ -31,7 +31,7 @@
 
 	} catch (Exception ex) {
 		session.setAttribute("reset", "ShowArticles.jsp");
-		session.setAttribute("error", "Nincs ilyen felhasználó!");
+		session.setAttribute("error", "Nincs ilyen felhasznÃ¡lÃ³!");
 		response.sendRedirect(response.encodeRedirectURL("Error.jsp"));
 	}
 %>

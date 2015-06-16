@@ -49,6 +49,27 @@ header nav a {
 	text-transform: uppercase;
 }
 
+header form {
+	width: 300px;
+	display: block;
+	float: right;
+	margin: 0;
+}
+
+header form input[type="text"] {
+	display: inline;
+	width: 140px;
+}
+
+header form input[type="submit"] {
+	display: inline;
+	height: 24px;
+	width: 100px;
+	padding: 0;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
 .form_cucc {
 	max-width: 400px;
 	margin: 10px 40px;
@@ -89,8 +110,7 @@ input[type="submit"], input[type="button"] {
 	color: black;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover
-	{
+input[type="submit"]:hover, input[type="button"]:hover {
 	background: #b9b9b9;
 }
 
@@ -211,8 +231,8 @@ article, div {
 	transition: color .5s;
 }
 
-#wrapper h6:hover {
-	color: #e18a87;
+#wrapper h6 a:hover {
+	color: black;
 }
 
 .profile {

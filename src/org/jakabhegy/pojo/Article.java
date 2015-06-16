@@ -19,7 +19,7 @@ import org.jakabhegy.tools.Tools;
 @Entity
 public class Article {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String title;
 	@Column(length = 2000)

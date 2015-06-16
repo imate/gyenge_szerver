@@ -8,8 +8,8 @@
 <%@page
 	import="org.eclipse.persistence.internal.libraries.asm.tree.TryCatchBlockNode"%>
 <%@page import="org.jakabhegy.pojo.Message"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="org.jakabhegy.tools.Tools"%>
 <%@page import="java.util.Vector"%>
@@ -17,21 +17,21 @@
 <jsp:useBean id="messages" scope="session" class="java.util.Vector" />
 <html>
 <head>
-<title>Egy kis üzenet</title>
+<title>Egy kis Ã¼zenet</title>
 <link rel="stylesheet" href="style.css" type="text/css"></link>
 <meta charset="UTF-8">
 </head>
 <body>
 	<header>
-	<h1>Küldj nekem egy nagy üzenetet!</h1>
+	<h1>KÃ¼ldj nekem egy nagy Ã¼zenetet!</h1>
 	</header>
 	<div class="form_cucc">
 
 		<form action="MessageServlet" method="post" name="messageForm"
 			accept-charset="UTF-8">
 
-			<textarea name="message" placeholder="Üzenet"></textarea>
-			<input type="submit" value="Küldés" />
+			<textarea name="message" placeholder="Ãœzenet"></textarea>
+			<input type="submit" value="KÃ¼ldÃ©s" />
 			<%
 				out.println("<h2>" + Tools.linkTag("Hello", "Vissza") + "</h2>");
 			%>
